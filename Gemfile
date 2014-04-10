@@ -13,3 +13,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'slim-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'coveralls', require: false
+  gem 'shoulda-matchers'
+end
