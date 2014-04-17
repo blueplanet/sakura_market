@@ -17,9 +17,11 @@ gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'coveralls', require: false
-  gem 'shoulda-matchers'
+
+  gem 'capybara'
 end
