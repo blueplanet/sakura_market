@@ -1,13 +1,10 @@
 language: ruby
-
 rvm:
-- 2.1.0
-
+  - 2.1.0
 env:
-- DB=postgresql
-
+  - DB=postgresql
 bundler_args: --without development:production
-
 before_script:
-- psql -c 'create database sakura_market_test' -U postgres
-- RAILS_ENV=test bundle exec rake db:migrate
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database sakura_market_test' -U postgres
+  - RAILS_ENV=test bundle exec rake db:migrate
