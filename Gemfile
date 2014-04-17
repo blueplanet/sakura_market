@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'slim-rails'
+gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails'
