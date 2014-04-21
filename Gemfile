@@ -15,6 +15,8 @@ gem 'spring',        group: :development
 gem 'slim-rails'
 gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 
+gem 'kaminari'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
