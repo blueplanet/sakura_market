@@ -17,6 +17,7 @@ gem 'slim-rails'
 gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 
 gem 'kaminari'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
