@@ -1,0 +1,6 @@
+ja:
+  devise:
+    registrations:
+      new:
+        title: ユーザ登録
+        submit: 登録する
