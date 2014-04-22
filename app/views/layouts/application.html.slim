@@ -7,11 +7,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    #messages
-      - if notice
-        .alert.alert-info = notice
-      - if alert
-        .alert.alert-warning = alert
     .navbar.navbar-default.navbar-fixed-top role='navigation'
       .container
         .navbar-header
@@ -31,4 +26,8 @@ html
               = link_to 'ユーザ登録', new_user_registration_path
 
     .container
-      = yield
+      #messages.row
+        = alert_helper('info', notice) if notice
+        = alert_helper('warning', alert) if alert
+      .row
+        = yield
