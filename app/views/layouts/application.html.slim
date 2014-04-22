@@ -21,9 +21,13 @@ html
             li
               a href='#' Default
             li
-              a href='#' Static top
-            li.active
-              a href='#' Fixed top
+              = link_to 'ログイン', new_user_session_path
+            li
+              = link_to 'ユーザ登録', new_user_registration_path
 
     .container
-      = yield
+      #messages.row
+        = alert_helper('info', notice) if notice
+        = alert_helper('warning', alert) if alert
+      .row
+        = yield

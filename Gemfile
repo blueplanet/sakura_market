@@ -17,6 +17,8 @@ gem 'slim-rails'
 gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 
 gem 'kaminari'
+gem 'devise'
+gem 'simple_form', '~> 3.1.0.rc1'
 
 group :development, :test do
   gem 'rspec-rails'
