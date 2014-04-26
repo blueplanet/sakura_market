@@ -25,6 +25,10 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :development do
+  gem 'pry-rails'
+end
+
 group :test do
   gem 'coveralls', require: false
 
