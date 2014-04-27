@@ -1,0 +1,12 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-success
+      .panel-heading = t '.title'
+      .panel-body
+        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = f.error_notification
+          .form-inputs
+            = f.input :email, :required => false, :autofocus => true
+            = f.input :password, :required => false
+          center.form-actions
+            = f.button :submit, t('.submit'), class: "btn btn-success"

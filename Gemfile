@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.0'
 
 gem 'rails', '4.1.0'
 gem 'pg'
@@ -16,10 +17,16 @@ gem 'slim-rails'
 gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 
 gem 'kaminari'
+gem 'devise'
+gem 'simple_form', '~> 3.1.0.rc1'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
+
+group :development do
+  gem 'pry-rails'
 end
 
 group :test do
