@@ -17,13 +17,7 @@ html
               a href='#' Home
             li
               a href='#about' About
-          ul.nav.navbar-nav.navbar-right
-            li
-              a href='#' Default
-            li
-              = link_to 'ログイン', new_user_session_path
-            li
-              = link_to 'ユーザ登録', new_user_registration_path
+          = render 'user_links'
 
     .container
       #messages.row
