@@ -3,7 +3,7 @@ ul.nav.navbar-nav.navbar-right
     li
       .navbar-text = current_user.email
     li
-      = link_to '#' do
+      = link_to current_cart do
         span.glyphicon.glyphicon-shopping-cart カート
     li
       = link_to 'ログアウト', destroy_user_session_path, method: :delete
