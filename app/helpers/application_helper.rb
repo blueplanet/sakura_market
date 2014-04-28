@@ -5,4 +5,12 @@ module ApplicationHelper
       concat content
     end
   end
+
+  def current_cart
+    return nil unless current_user
+    cart = session[:cart_id].blank? ? Cart.find_or_create_by(user: current_user) : Cart.find(session[:cart_id])
+    session[:cart_id] ||= cart.id
+
+    cart
+  end
 end
