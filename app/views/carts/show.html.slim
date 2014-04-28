@@ -4,4 +4,6 @@
     small = "合計 #{@cart.cart_items.count} 件の商品"
 
 .list-group
-  = render @cart.cart_items
+  = render partial: 'cart_items/cart_item', collection: @items
+
+  = paginate @items
