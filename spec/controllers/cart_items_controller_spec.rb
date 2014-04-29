@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe CartItemsController do
-  let(:cart) { create(:cart) }
+  let(:user) { create(:user) }
   let(:product) { create(:product) }
-  before { controller.stub(:current_cart).and_return(cart) }
+  before { sign_in user }
 
   describe 'POST create' do
     context '該当商品は追加されてない場合' do
@@ -16,10 +16,11 @@ describe CartItemsController do
 
     context '該当商品は既に追加されている場合' do
       it '該当商品項目の数がインクリメントされる' do
-        cart.cart_items << CartItem.create(product: product)
+        post :create, product_id: product.id
         post :create, product_id: product.id
 
-        cart.cart_items.first.quantity.should eq 2
+        expect(CartItem.count).to eq 1
+        expect(CartItem.first.quantity).to eq 2
       end
     end
   end
