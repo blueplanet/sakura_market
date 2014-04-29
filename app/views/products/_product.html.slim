@@ -1,3 +1,4 @@
 li.list-group-item
   span.badge = product.price
+  = link_to 'カートに追加', cart_items_path(product_id: product.id), method: :post , class: 'btn btn-success btn-sm'
   = product.name
