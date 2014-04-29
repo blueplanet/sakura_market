@@ -10,13 +10,11 @@ html
     .navbar.navbar-default.navbar-fixed-top role='navigation'
       .container
         .navbar-header
-          a.navbar-brand href='#' さくらマーケット
+          = link_to 'さくらマーケット', root_path, class: 'navbar-brand'
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li.active
-              a href='#' Home
-            li
-              a href='#about' About
+              = link_to 'Home', root_path
           = render 'user_links'
 
     .container
