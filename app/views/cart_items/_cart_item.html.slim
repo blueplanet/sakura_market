@@ -1,3 +1,8 @@
-a.list-group-item href='#'
+.list-group-item
   span.badge = cart_item.quantity
+  = link_to '削除', 
+    cart_item, 
+    method: :delete, 
+    class: 'btn btn-danger btn-sm', 
+    data: {confirm: t('confirmations.delete')}
   = cart_item.product.name

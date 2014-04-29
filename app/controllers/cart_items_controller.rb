@@ -11,4 +11,13 @@ class CartItemsController < ApplicationController
       redirect_to root_path, error: cart_item.errors.full_messages.first
     end
   end
+
+  def destroy
+    @cart_item = CartItem.find params[:id]
+    if @cart_item.destroy
+      redirect_to current_cart, notice: t('.deleted')
+    else
+      redirect_to root_path, error: cart_item.errors.full_messages.first
+    end
+  end
 end
