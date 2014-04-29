@@ -44,6 +44,8 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerHelpers, type: :controller
   
   config.before(:suite) do
     FactoryGirl.reload
