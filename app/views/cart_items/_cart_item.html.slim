@@ -6,3 +6,4 @@
     class: 'btn btn-danger btn-sm', 
     data: {confirm: t('confirmations.delete')}
   = cart_item.product.name
+  .pull-right.label.label-warning = number_with_delimiter(cart_item.product.price * cart_item.quantity)
