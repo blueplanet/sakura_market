@@ -28,4 +28,4 @@ deploy:
         - heroku-deploy
         - script:
             name: Update database
-            code: heroku run:detached rake db:migrate --app $APP_NAME
+            code: heroku run rake db:migrate --app $APP_NAME
