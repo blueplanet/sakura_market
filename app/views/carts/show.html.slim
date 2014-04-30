@@ -1,7 +1,14 @@
 .page-header
   h2 
     |カート
-    small = "合計 #{@cart.cart_items.count} 件の商品"
+    small
+      | 合計
+      .label.label-info = number_with_delimiter(@cart.cart_items.count)
+      | 件、
+      .label.label-info = number_with_delimiter(@cart.total_amount)
+      | 円の商品
+
+
 
 .list-group
   = render partial: 'cart_items/cart_item', collection: @items
