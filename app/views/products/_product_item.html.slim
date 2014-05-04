@@ -6,4 +6,4 @@
       p = product_item.description
       p
         a.btn.btn-sm.btn-info href='#' = number_with_delimiter product_item.price
-        a.pull-right.btn.btn-sm.btn-danger href='#' カートに追加
+        = link_to 'カートに追加', cart_items_path(product_id: product_item.id), method: :post, class: 'pull-right btn btn-sm btn-danger'
