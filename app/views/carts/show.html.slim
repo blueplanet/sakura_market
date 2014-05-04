@@ -1,14 +1,25 @@
 .page-header
   h2 
+    span.glyphicon.glyphicon-shopping-cart
     |カート
-    small
-      | 合計
-      .label.label-info = number_with_delimiter(@cart.cart_items.count)
-      | 件、
-      .label.label-info = number_with_delimiter(@cart.total_amount)
-      | 円の商品
 
-.list-group
-  = render partial: 'cart_items/cart_item', collection: @items
+.row.view-cart
+  .col-md-12
+    table.table.table-striped
+      thead
+        tr
+          td Name
+          td Image
+          td width='20%' Quantity
+          td width='10%' Unit Price
+          td width='10%' Total
+      tbody
+        = render partial: 'cart_items/cart_item', collection: @items
+        tr
+          td
+          td
+          td
+          td.text-right Total
+          td.text-right = number_with_delimiter(current_cart.total_amount)
 
-  = paginate @items
+center = paginate @items
