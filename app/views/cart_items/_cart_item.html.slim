@@ -1,9 +1,15 @@
-.list-group-item
-  span.badge = cart_item.quantity
-  = link_to '削除', 
-    cart_item, 
-    method: :delete, 
-    class: 'btn btn-danger btn-sm', 
-    data: {confirm: t('confirmations.delete')}
-  = cart_item.product.name
-  .pull-right.label.label-warning = number_with_delimiter(cart_item.product.price * cart_item.quantity)
+tr
+  td = cart_item.product.name
+  td = image_tag cart_item.product.image
+  td
+    .input-group
+      input.form-control type='text' placeholder='1'
+      span.input-group-btn
+        a.btn.btn-info
+          span.glyphicon.glyphicon-refresh
+          |更新
+        = link_to cart_item, class: 'btn btn-danger', method: :delete, data: {confirm: t('confirmations.delete')} do
+          span.glyphicon.glyphicon-trash
+          |削除
+  td.text-right = number_with_delimiter(cart_item.product.price)
+  td.text-right = number_with_delimiter(cart_item.product.price * cart_item.quantity)

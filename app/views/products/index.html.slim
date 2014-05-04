@@ -1,4 +1,6 @@
-ul.list-group
-  = render @products
+- @products.in_groups_of(3, false).each do |product_row|
+  .row
+    = render partial: 'product_item', collection: product_row
 
-= paginate @products
+center
+  = paginate @products

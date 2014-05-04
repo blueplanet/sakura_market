@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140427070751) do
     t.string   "name"
     t.string   "image"
     t.integer  "price"
-    t.text     "describe"
+    t.text     "description"
     t.integer  "display_no"
     t.datetime "created_at"
     t.datetime "updated_at"
