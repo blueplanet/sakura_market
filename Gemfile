@@ -20,6 +20,10 @@ gem 'kaminari'
 gem 'devise'
 gem 'simple_form', '~> 3.1.0.rc1'
 
+gem 'carrierwave'
+gem 'fog'
+gem 'foreman'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
