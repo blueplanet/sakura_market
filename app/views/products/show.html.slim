@@ -1,0 +1,11 @@
+.row
+  .col-md-5
+    .img-rounded = image_tag @product.image
+  .col-md-7
+    h4 = @product.name
+    dl.dl-horizontal
+      dt Price
+      dd = number_with_delimiter @product.price
+      dt 説明
+      dd = @product.description
+    = link_to 'カートに追加', cart_items_path(product_id: @product.id), method: :post, class: 'btn btn-danger'
