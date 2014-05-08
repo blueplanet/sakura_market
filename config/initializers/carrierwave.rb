@@ -1,7 +1,5 @@
 CarrierWave.configure do |config|
-  if Rails.env.test?
-    config.storage :file
-  else
+  if Rails.env.production?
     config.storage = :fog
 
     config.fog_credentials = {
@@ -13,5 +11,7 @@ CarrierWave.configure do |config|
 
     config.fog_directory = ENV['S3_BUCKET_NAME']
     config.fog_public = false
+  else
+    config.storage :file
   end
 end
