@@ -1,9 +1,10 @@
 .col-md-4.col-sm-6
   .thumbnail
-    img data-src='holder.js/300x200'
+    = link_to image_tag(product_item.image_url.to_s), product_item
     .caption
-      h3 = product_item.name
-      p = product_item.description
+      = link_to product_item do
+        h3 = product_item.name
+        p = product_item.description
       p
         a.btn.btn-sm.btn-info href='#' = number_with_delimiter product_item.price
         = link_to 'カートに追加', cart_items_path(product_id: product_item.id), method: :post, class: 'pull-right btn btn-sm btn-danger'

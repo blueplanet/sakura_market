@@ -1,6 +1,6 @@
 tr
-  td = cart_item.product.name
-  td = image_tag cart_item.product.image
+  td = link_to cart_item.product.name, cart_item.product
+  td = link_to image_tag(cart_item.product.image_url.to_s), cart_item.product
   td
     .input-group
       input.form-control type='text' placeholder='1'

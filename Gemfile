@@ -4,6 +4,7 @@ ruby '2.1.0'
 
 gem 'rails', '4.1.0'
 gem 'pg'
+gem 'thin'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -19,6 +20,10 @@ gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
 gem 'kaminari'
 gem 'devise'
 gem 'simple_form', '~> 3.1.0.rc1'
+
+gem 'carrierwave'
+gem 'fog'
+gem 'foreman'
 
 group :development, :test do
   gem 'rspec-rails'
