@@ -2,5 +2,7 @@ ja:
   cart_items:
     create:
       created: 商品をカートに追加しました。
+    update:
+      updated: 商品を更新しました。
     destroy:
       deleted: 商品をカートから削除しました。
