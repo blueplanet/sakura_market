@@ -34,6 +34,7 @@ group :development do
   gem 'pry-rails'
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
+  gem 'launchy'
 end
 
 group :test do
