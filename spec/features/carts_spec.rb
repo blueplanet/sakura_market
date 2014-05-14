@@ -18,16 +18,25 @@ feature 'ユーザは、自分のカートを管理したい' do
     expect(page).to have_content product.name
   end
 
-  scenario 'カートにある不要な商品を削除出来る' do
-    first(:link, 'カートに追加').click
+  context '商品はカートに追加されている場合' do
+    background { first(:link, 'カートに追加').click }
 
-    expect(page).to have_content product.name
+    scenario 'カートにある不要な商品を削除出来る' do
+      within 'table tbody tr:first-child' do
+        first(:link, '削除').click
+      end
 
-    within 'table tbody tr:first-child' do
-      first(:link, '削除').click
+      expect(page).to have_content '商品をカートから削除しました'
+      expect(page).to_not have_content product.name
     end
 
-    expect(page).to have_content '商品をカートから削除しました'
-    expect(page).to_not have_content product.name
+    scenario 'カートにある商品の数を変更出来る' do
+      within 'table tbody tr:first-child' do
+        fill_in 'cart_item_quantity', with: 4
+        click_button '更新'
+      end
+
+      expect(page).to have_content '商品を更新しました'
+    end
   end
 end
