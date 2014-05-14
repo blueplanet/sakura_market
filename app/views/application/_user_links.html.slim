@@ -3,9 +3,10 @@ ul.nav.navbar-nav.navbar-right
     li
       .navbar-text = current_user.email
     li
-      = link_to current_cart, class: 'btn btn-info' do
-        span.glyphicon.glyphicon-shopping-cart
-        = "#{current_cart.cart_items.count} - $ #{number_with_delimiter(current_cart.total_amount)}" 
+      = link_to current_cart, class: "btn btn-#{current_page?(cart_path(current_cart)) ? 'info' : 'default'}" do
+        .text-danger
+          span.glyphicon.glyphicon-shopping-cart
+          = "#{current_cart.cart_items.count} - $ #{number_with_delimiter(current_cart.total_amount)}" 
     li
       = link_to 'ログアウト', destroy_user_session_path, method: :delete
   - else

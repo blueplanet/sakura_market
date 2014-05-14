@@ -13,7 +13,7 @@ html
           = link_to 'さくらマーケット', root_path, class: 'navbar-brand'
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            li.active
+            li class="#{'active' if current_page?(root_path)}"
               = link_to 'カタログ', root_path
           = render 'user_links'
 
