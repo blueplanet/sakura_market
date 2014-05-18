@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427070751) do
+ActiveRecord::Schema.define(version: 20140518050453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20140427070751) do
   end
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.string   "name"
+    t.string   "tel"
+    t.string   "region"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "address"
+    t.date     "delivery_day"
+    t.integer  "delivery_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.string   "name"
