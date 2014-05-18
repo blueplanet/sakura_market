@@ -2,6 +2,7 @@
   h2 
     span.glyphicon.glyphicon-shopping-cart
     |カート
+    = link_to 'チェックアウト', new_order_path, class: 'btn btn-warning' if @items.any?
 
 .row.view-cart
   .col-md-12
