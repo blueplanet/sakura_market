@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    model:
+      order: 注文
+    attributes:
+      order:
+        name: お名前
+        tel: 電話番号
+        address: 住所
+        zipcode: 郵便番号
+        delivery_day: 配送日付
+        delivery_time: 配送時間帯
