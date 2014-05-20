@@ -6,9 +6,9 @@ tr
       .input-group
         = f.text_field :quantity, class: 'form-control', type:'text', placeholder:'1'
         span.input-group-btn
-          = button_tag type: :submimt, class: 'btn btn-info' do
+          = button_tag type: :submit, class: 'btn btn-info' do
             span.glyphicon.glyphicon-refresh
-            = t '.update'
+            = t 'strings.update'
           = link_to cart_item, class: 'btn btn-danger', method: :delete, data: {confirm: t('confirmations.delete')} do
             span.glyphicon.glyphicon-trash
             = t 'strings.delete'
