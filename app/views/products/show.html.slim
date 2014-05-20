@@ -1,6 +1,6 @@
 .row
   .col-md-5
-    .img-rounded = image_tag @product.image_url.to_s
+    = image_tag @product.image_url(:detail).to_s, class: 'img-rounded'
   .col-md-7
     h4 = @product.name
     dl.dl-horizontal
