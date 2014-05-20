@@ -6,10 +6,11 @@ tr
       .input-group
         = f.text_field :quantity, class: 'form-control', type:'text', placeholder:'1'
         span.input-group-btn
-          = f.submit t('.update'), class: 'btn btn-info' do
+          = button_tag type: :submimt, class: 'btn btn-info' do
             span.glyphicon.glyphicon-refresh
+            = t '.update'
           = link_to cart_item, class: 'btn btn-danger', method: :delete, data: {confirm: t('confirmations.delete')} do
             span.glyphicon.glyphicon-trash
-            |削除
+            = t 'strings.delete'
   td.text-right = number_with_delimiter(cart_item.product.price)
   td.text-right = number_with_delimiter(cart_item.product.price * cart_item.quantity)

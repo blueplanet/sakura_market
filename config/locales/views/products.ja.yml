@@ -1,0 +1,8 @@
+ja:
+  products:
+    common: &common
+      add_to_cart: カートに追加
+    product_item: 
+      <<: *common
+    show:
+      <<: *common

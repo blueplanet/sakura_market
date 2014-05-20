@@ -3,7 +3,7 @@
       html: {class: 'form-horizontal col-md-8 col-md-offset-2'},
       wrapper: :horizontal_form do |f|
     .panel.panel-info
-      .panel-heading 送付先
+      .panel-heading= t '.headers.address'
       .panel-body
         = f.input :name
         = f.input :tel
@@ -11,15 +11,9 @@
         = f.input :address
 
     .panel.panel-info
-      .panel-heading 配送日時
+      .panel-heading= t '.headers.delivery'
       .panel-body
         = f.input :delivery_day
         = f.input :delivery_time      
 
-    = f.submit '確認する', class: 'btn btn-primary'
-
-  / .panel.panel-info
-  /   .panel-heading 送料
-
-  / .panel.panel-info
-  /   .panel-heading 代引き手数料
+    = f.submit t('.confirmation'), class: 'btn btn-primary'
