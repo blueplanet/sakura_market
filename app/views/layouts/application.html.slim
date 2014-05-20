@@ -1,8 +1,7 @@
 doctype
 html
   head
-    title
-      | SakuraMarket
+    title= t('site.title')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -10,11 +9,11 @@ html
     .navbar.navbar-default.navbar-fixed-top role='navigation'
       .container
         .navbar-header
-          = link_to 'さくらマーケット', root_path, class: 'navbar-brand'
+          = link_to t('site.title'), root_path, class: 'navbar-brand'
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li class="#{'active' if current_page?(root_path)}"
-              = link_to 'カタログ', root_path
+              = link_to t('links.catalog'), root_path
           = render 'user_links'
 
     .container

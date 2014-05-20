@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 20140518050453) do
   create_table "orders", force: true do |t|
     t.string   "name"
     t.string   "tel"
-    t.string   "region"
-    t.string   "city"
     t.string   "zipcode"
     t.string   "address"
     t.date     "delivery_day"

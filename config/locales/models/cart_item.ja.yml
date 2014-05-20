@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    model:
+      cart_item: 商品項目
+
+    attributes:
+      cart_item:
+        quantity: 数量

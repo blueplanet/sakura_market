@@ -1,26 +1,26 @@
 .page-header
   h2 
     span.glyphicon.glyphicon-shopping-cart
-    |カート
-    = link_to 'チェックアウト', new_order_path, class: 'btn btn-warning' if @items.any?
+    = t '.title'
+    = link_to t('.checkout'), new_order_path, class: 'btn btn-warning' if @items.any?
 
 .row.view-cart
   .col-md-12
     table.table.table-striped
       thead
         tr
-          td Name
-          td width='20%' Image
-          td width='20%' Quantity
-          td width='10%' Unit Price
-          td width='10%' Total
+          td= t 'activerecord.attributes.product.name'
+          td width='20%' = t 'activerecord.attributes.product.image'
+          td width='20%' = t 'activerecord.attributes.product.quantity'
+          td width='10%' = t 'activerecord.attributes.product.price'
+          td width='10%' = t '.captions.sum'
       tbody
         = render partial: 'cart_items/cart_item', collection: @items
         tr
           td
           td
           td
-          td.text-right Total
+          td.text-right = t '.captions.total'
           td.text-right = number_with_delimiter(current_cart.total_amount)
 
 center = paginate @items

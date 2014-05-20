@@ -3,8 +3,6 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.string :name
       t.string :tel
-      t.string :region
-      t.string :city
       t.string :zipcode
       t.string :address
       t.date :delivery_day

@@ -1,3 +1,16 @@
 ja:
+  site:
+    title: さくらマーケット
+
   confirmations:
     delete: 削除して宜しいですか？
+
+  links:
+    login: ログイン
+    logout: ログアウト
+    registration: ユーザ登録
+    catalog: カタログ
+
+  strings:
+    update: 更新
+    delete: 削除

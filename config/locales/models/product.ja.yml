@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    model:
+      product: 商品
+    attributes:
+      product:
+        name: 名称
+        price: 価格
+        image: 画像
+        description: 説明
+        display_no: 表示順番

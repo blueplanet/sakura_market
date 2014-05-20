@@ -4,8 +4,8 @@
   .col-md-7
     h4 = @product.name
     dl.dl-horizontal
-      dt Price
+      dt = t 'activerecord.attributes.product.price'
       dd = number_with_delimiter @product.price
-      dt 説明
+      dt = t 'activerecord.attributes.product.description'
       dd = @product.description
-    = link_to 'カートに追加', cart_items_path(product_id: @product.id), method: :post, class: 'btn btn-danger'
+    = link_to t('.add_to_cart'), cart_items_path(product_id: @product.id), method: :post, class: 'btn btn-danger'

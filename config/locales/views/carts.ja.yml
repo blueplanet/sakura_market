@@ -1,0 +1,8 @@
+ja:
+  carts:
+    show:
+      title: カート
+      checkout: チェックアウト
+      captions:
+        sum: 小計
+        total: 合計

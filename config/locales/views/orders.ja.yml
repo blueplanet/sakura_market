@@ -1,0 +1,7 @@
+ja:
+  orders:
+    new:
+      confirmation: 確認
+      headers:
+        address: 送付先
+        delivery: 配送日時  
