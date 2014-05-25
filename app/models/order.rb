@@ -1,9 +1,17 @@
 class Order < ActiveRecord::Base
+  extend Enumerize
+
+  enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
+
   attr_reader :min_day, :max_day
 
   validates :name, presence: true
+  validates :tel, presence: true
+  validates :zipcode, presence: true
+  validates :address, presence: true
   validates :delivery_day, presence: true
   validate :delivery_day_limit
+  validates :delivery_time, presence: true
 
   def initialize
     super

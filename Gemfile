@@ -27,6 +27,8 @@ gem 'mini_magick'
 gem 'fog'
 gem 'foreman'
 
+gem 'enumerize'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
