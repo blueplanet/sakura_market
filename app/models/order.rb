@@ -1,4 +1,7 @@
 class Order < ActiveRecord::Base
+  ADDITIONAL_NUM = 5.freeze
+  ADDITIONAL_AMOUNT = 600.freeze
+
   extend Enumerize
 
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
@@ -18,6 +21,10 @@ class Order < ActiveRecord::Base
 
     @min_day = business_days_after(3)
     @max_day = business_days_after(14)
+  end
+
+  def postage(items)
+    ((1.0 * items.to_a.sum(&:quantity)) / ADDITIONAL_NUM).ceil * ADDITIONAL_AMOUNT
   end
 
   private
