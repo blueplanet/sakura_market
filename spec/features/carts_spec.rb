@@ -36,7 +36,7 @@ feature 'ユーザは、自分のカートを管理したい' do
         click_button I18n.t('strings.update')
       end
 
-      expect(page).to have_content '商品を更新しました'
+      expect(page).to have_content I18n.t('cart_items.update.updated')
     end
   end
 end
