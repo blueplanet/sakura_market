@@ -5,3 +5,4 @@ ja:
       headers:
         address: 送付先
         delivery: 配送日時  
+        postage: 送料
