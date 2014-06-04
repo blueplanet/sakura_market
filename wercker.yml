@@ -30,8 +30,10 @@ build:
             from-name: wercker
 deploy:
     steps:
-        - heroku-deploy:
-            run: rake db:migrate --app $APP_NAME
+        - heroku-deploy
+        - script:
+            name: Update database
+            code: heroku run:detached rake db:migrate --app $APP_NAME
 
     after-steps:
         - hipchat-notify:
