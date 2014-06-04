@@ -17,7 +17,9 @@
         = f.input :delivery_time, as: :select
 
     .panel.panel-info
-      .panel-heading= t '.headers.postage'
+      .panel-heading= t '.headers.other'
       .panel-body
         = f.input :postage, input_html: { disabled: true, value: @order.postage(current_cart.cart_items) }
+        = f.input :fee, input_html: { disabled: true, value: @order.fee(current_cart.cart_items) }
+
     = f.submit t('.confirmation'), class: 'btn btn-primary'

@@ -33,7 +33,7 @@ deploy:
         - heroku-deploy
         - script:
             name: Update database
-            code: heroku run:detached rake db:migrate --app $APP_NAME
+            code: run:detached rake db:migrate --app $APP_NAME
 
     after-steps:
         - hipchat-notify:

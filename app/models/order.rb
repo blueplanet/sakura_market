@@ -27,6 +27,21 @@ class Order < ActiveRecord::Base
     ((1.0 * items.to_a.sum(&:quantity)) / ADDITIONAL_NUM).ceil * ADDITIONAL_AMOUNT
   end
 
+  def fee(items)
+    origin_fee = case items.to_a.sum { |item| item.product.price * item.quantity }
+      when "> 100_000"
+        10_000
+      when "> 30_000"
+        600
+      when "> 10_000"
+        400
+      else
+        300
+      end
+
+    (100.0 + Settings.excise_percent) / 100 * origin_fee
+  end
+
   private
     def business_days_after num
       date = Date.today
