@@ -29,6 +29,8 @@ gem 'foreman'
 
 gem 'enumerize'
 
+gem 'settingslogic'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
