@@ -39,7 +39,7 @@ class Order < ActiveRecord::Base
         300
       end
 
-    origin_fee * 1.08
+    (100.0 + Settings.excise_percent) / 100 * origin_fee
   end
 
   private

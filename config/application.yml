@@ -1,0 +1,11 @@
+defaults: &defaults
+  excise_percent: 8 
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults
