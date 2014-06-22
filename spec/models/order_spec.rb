@@ -36,4 +36,26 @@ describe Order do
       it { should eq 1200 }
     end
   end
+
+  describe '#set_default_address' do
+    let(:order) { build(:order) }
+
+    context 'デフォルトアドレスが保存されてない場合' do
+      it 'デフォルトアドレスが新規される' do
+        expect {
+          order.save!
+        }.to change(DefaultAddress, :count).by(1)
+      end
+    end
+
+    context 'デフォルトアドレスが既に保存されている場合' do
+      before { order.user.default_address = FactoryGirl.create(:default_address) }
+
+      it 'デフォルトアドレスが変更されない' do
+        expect {
+          order.save!
+        }.not_to change(DefaultAddress, :count)
+      end
+    end
+  end
 end

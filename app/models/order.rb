@@ -17,6 +17,17 @@ class Order < ActiveRecord::Base
   validates :delivery_time, presence: true
 
   belongs_to :user
+
+  after_create :set_default_address, if: -> { user.default_address.blank? }
+  def set_default_address
+    default = DefaultAddress.new user: user
+    %w(name tel zipcode address).each do |attr|
+      default[attr] = self.attributes[attr]
+    end
+
+    default.save!
+  end
+
   def initialize
     super
 
