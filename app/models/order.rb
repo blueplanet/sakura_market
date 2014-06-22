@@ -16,6 +16,7 @@ class Order < ActiveRecord::Base
   validate :delivery_day_limit
   validates :delivery_time, presence: true
 
+  belongs_to :user
   def initialize
     super
 
