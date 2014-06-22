@@ -21,9 +21,7 @@ class Order < ActiveRecord::Base
   after_create :set_default_address, if: -> { user.default_address.blank? }
   def set_default_address
     default = DefaultAddress.new user: user
-    %w(name tel zipcode address).each do |attr|
-      default[attr] = self.attributes[attr]
-    end
+    default.copy_from self
 
     default.save!
   end
