@@ -13,4 +13,10 @@ class DefaultAddress < ActiveRecord::Base
       self[attr] = from[attr]
     end
   end
+
+  def copy_to to
+    ATTRS.each do |attr|
+      to[attr] = self[attr]
+    end
+  end
 end
