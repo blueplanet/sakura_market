@@ -19,7 +19,7 @@
     .panel.panel-info
       .panel-heading= t '.headers.other'
       .panel-body
-        = f.input :postage, input_html: { disabled: true, value: @order.postage(current_cart.cart_items) }
-        = f.input :fee, input_html: { disabled: true, value: @order.fee(current_cart.cart_items) }
+        = f.input :postage, input_html: { disabled: true, value: @order.postage(current_cart.items) }
+        = f.input :fee, input_html: { disabled: true, value: @order.fee(current_cart.items) }
 
     = f.submit t('.create'), class: 'btn btn-primary'
