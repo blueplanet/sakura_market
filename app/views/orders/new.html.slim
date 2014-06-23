@@ -22,4 +22,4 @@
         = f.input :postage, input_html: { disabled: true, value: @order.postage(current_cart.cart_items) }
         = f.input :fee, input_html: { disabled: true, value: @order.fee(current_cart.cart_items) }
 
-    = f.submit t('.confirmation'), class: 'btn btn-primary'
+    = f.submit t('.create'), class: 'btn btn-primary'

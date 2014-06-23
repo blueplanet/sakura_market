@@ -1,7 +1,7 @@
 ja:
   orders:
     new:
-      confirmation: 確認
+      create: 注文する
       headers:
         address: 送付先
         delivery: 配送日時  

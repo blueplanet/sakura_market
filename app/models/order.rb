@@ -16,9 +16,18 @@ class Order < ActiveRecord::Base
   validate :delivery_day_limit
   validates :delivery_time, presence: true
 
-  def initialize
-    super
+  belongs_to :user
 
+  after_create :set_default_address, if: -> { user.default_address.blank? }
+  def set_default_address
+    default = DefaultAddress.new user: user
+    default.copy_from self
+
+    default.save!
+  end
+
+  after_initialize :initialize_business_days
+  def initialize_business_days
     @min_day = business_days_after(3)
     @max_day = business_days_after(14)
   end
