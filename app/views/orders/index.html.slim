@@ -1,1 +1,14 @@
-| 注文履歴
+.page-header
+  h2 
+    = t '.title'
+
+#orders.list-group
+  - @orders.each do |order|
+    = link_to order, class: 'list-group-item'
+      h4.list-group-item-heading= l order.created_at.to_date, format: :long
+      dl.dl-horizontal
+        dt= t '.total_amount'
+        dd= number_with_delimiter order.total_amount
+
+center
+  = paginate @orders

@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140629213210) do
     t.integer  "total"
     t.integer  "tax"
     t.string   "delivery_time"
+    t.integer  "total_amount"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree

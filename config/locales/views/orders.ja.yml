@@ -6,3 +6,7 @@ ja:
         address: 送付先
         delivery: 配送日時  
         amount: 料金
+
+    index:
+      title: 注文履歴
+      total_amount: 合計
