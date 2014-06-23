@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
   private
     def current_cart
       return nil unless current_user
-      cart = session[:cart_id].blank? ? Cart.find_or_create_by(user: current_user) : Cart.find(session[:cart_id])
-      session[:cart_id] ||= cart.id
+      session[:cart_id] ||= Cart.find_or_create_by(user: current_user)
 
-      cart
+      Cart.find session[:cart_id]
     end
 end

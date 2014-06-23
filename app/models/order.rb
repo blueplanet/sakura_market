@@ -26,9 +26,8 @@ class Order < ActiveRecord::Base
     default.save!
   end
 
-  def initialize
-    super
-
+  after_initialize :initialize_business_days
+  def initialize_business_days
     @min_day = business_days_after(3)
     @max_day = business_days_after(14)
   end
