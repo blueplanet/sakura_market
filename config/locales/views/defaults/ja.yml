@@ -10,6 +10,7 @@ ja:
     logout: ログアウト
     registration: ユーザ登録
     catalog: カタログ
+    orders: 注文履歴
 
   strings:
     update: 更新
