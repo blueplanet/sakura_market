@@ -4,5 +4,6 @@ ja:
       title: カート
       checkout: チェックアウト
       captions:
+        quantity: 数量
         sum: 小計
         total: 合計

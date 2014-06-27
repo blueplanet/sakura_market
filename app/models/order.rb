@@ -1,6 +1,8 @@
 class Order < ActiveRecord::Base
   ADDITIONAL_NUM = 5.freeze
   ADDITIONAL_AMOUNT = 600.freeze
+  BUSINESS_DAY_FROM = 3.freeze
+  BUSINESS_DAY_TO = 14.freeze
 
   extend Enumerize
 
@@ -28,8 +30,8 @@ class Order < ActiveRecord::Base
 
   after_initialize :initialize_business_days
   def initialize_business_days
-    @min_day = business_days_after(3)
-    @max_day = business_days_after(14)
+    @min_day = business_days_after(BUSINESS_DAY_FROM)
+    @max_day = business_days_after(BUSINESS_DAY_TO)
   end
 
   def postage(items)
@@ -39,7 +41,7 @@ class Order < ActiveRecord::Base
   def fee(items)
     origin_fee = case items.to_a.sum { |item| item.product.price * item.quantity }
       when "> 100_000"
-        10_000
+        1_000
       when "> 30_000"
         600
       when "> 10_000"
@@ -55,7 +57,7 @@ class Order < ActiveRecord::Base
     def business_days_after num
       date = Date.today
 
-      while num > 0
+      while num > 1
         date += 1
         num -= 1 if 1 <= date.wday and date.wday <= 5
       end
@@ -64,6 +66,10 @@ class Order < ActiveRecord::Base
     end
 
     def delivery_day_limit
-      errors.add(:delivery_day, 'over range of days') if delivery_day < min_day or delivery_day > max_day
+      if delivery_day < min_day or delivery_day > max_day or [0, 6].include?(delivery_day.wday) 
+        errors.add(:delivery_day, 
+          I18n.t('activerecord.errors.messages.invalid_business_day', 
+            from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO)) 
+      end
     end
 end
