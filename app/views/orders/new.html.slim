@@ -13,7 +13,7 @@
     .panel.panel-info
       .panel-heading= t '.headers.delivery'
       .panel-body
-        = f.input :delivery_day, as: :string, input_html: { class: 'date_picker', data: {minDays: @order.min_day - Date.today, maxDays: @order.max_day - Date.today}}
+        = f.input :delivery_day, as: :string, required: true, input_html: { class: 'date_picker', data: {minDays: @order.min_day - Date.today, maxDays: @order.max_day - Date.today}}
         = f.input :delivery_time, as: :select
 
     .panel.panel-info

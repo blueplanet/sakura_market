@@ -14,7 +14,6 @@ class Order < ActiveRecord::Base
   validates :tel, presence: true
   validates :zipcode, presence: true
   validates :address, presence: true
-  validates :delivery_day, presence: true
   validate :delivery_day_limit
   validates :delivery_time, presence: true
 
@@ -66,6 +65,7 @@ class Order < ActiveRecord::Base
     end
 
     def delivery_day_limit
+      errors.add :delivery_day, :blank and return if delivery_day.blank?
       if delivery_day < min_day or delivery_day > max_day or [0, 6].include?(delivery_day.wday) 
         errors.add(:delivery_day, 
           I18n.t('activerecord.errors.messages.invalid_business_day', 
