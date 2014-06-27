@@ -1,5 +1,5 @@
 tr
-  td = link_to truncate(cart_item.product.name, lengh: 80), cart_item.product
+  td = link_to truncate(cart_item.name, lengh: 80), cart_item.product
   td.text-center = link_to image_tag(cart_item.product.image_url.to_s, class: 'cart_item_image'), cart_item.product
   td
     = form_for cart_item do |f|
@@ -12,5 +12,5 @@ tr
           = link_to cart_item, class: 'btn btn-danger', method: :delete, data: {confirm: t('confirmations.delete')} do
             span.glyphicon.glyphicon-trash
             = t 'strings.delete'
-  td.text-right = number_with_delimiter(cart_item.product.price)
-  td.text-right = number_with_delimiter(cart_item.product.price * cart_item.quantity)
+  td.text-right = number_with_delimiter(cart_item.price)
+  td.text-right = number_with_delimiter(cart_item.price * cart_item.quantity)
