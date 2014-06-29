@@ -6,9 +6,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new order_params.merge(user: current_user)
+    @order = Order.new order_params.merge(user: current_user, cart: current_cart)
     if @order.save
-      current_cart.destroy
       session[:cart_id] = nil
       redirect_to root_path, notice: t('.created')
     else
