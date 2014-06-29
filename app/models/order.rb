@@ -50,6 +50,11 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def tax_amount(items)
+    items_amount = items.to_a.sum { |item| item.price * item.quantity }
+    (items_amount + postage(items) + fee(items)) * Settings.excise_percent / 100
+  end
+
   def total(items)
     items_amount = items.to_a.sum { |item| item.price * item.quantity }
 
