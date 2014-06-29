@@ -22,6 +22,11 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_one :cart
 
+  after_create :set_order_info_to_cart
+  def set_order_info_to_cart
+    cart.update checkouted: true
+  end
+
   after_create :set_default_address, if: -> { user.default_address.blank? }
   def set_default_address
     default = DefaultAddress.new user: user

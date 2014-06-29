@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629211532) do
+ActiveRecord::Schema.define(version: 20140629213210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140629211532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_id"
+    t.boolean  "checkouted"
   end
 
   add_index "carts", ["order_id"], name: "index_carts_on_order_id", using: :btree

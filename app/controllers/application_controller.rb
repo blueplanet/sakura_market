@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
     def current_cart
       return nil unless current_user
-      session[:cart_id] ||= Cart.find_or_create_by(user: current_user).id
+      session[:cart_id] ||= Cart.find_or_create_by(user: current_user, checkouted: false).id
 
       Cart.find session[:cart_id]
     end

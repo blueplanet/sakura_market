@@ -44,7 +44,8 @@ describe Order do
   end
 
   describe '#set_default_address' do
-    let(:order) { build(:order) }
+    let(:cart) { create(:cart) }
+    let(:order) { build(:order, cart: cart) }
 
     context 'デフォルトアドレスが保存されてない場合' do
       it 'デフォルトアドレスが新規される' do
