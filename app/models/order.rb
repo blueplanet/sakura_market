@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
 
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
 
+  delegate :items, to: :cart
+
   attr_reader :min_day, :max_day
 
   validates :name, presence: true
@@ -18,6 +20,7 @@ class Order < ActiveRecord::Base
   validates :delivery_time, presence: true
 
   belongs_to :user
+  has_one :cart
 
   after_create :set_default_address, if: -> { user.default_address.blank? }
   def set_default_address
@@ -33,7 +36,7 @@ class Order < ActiveRecord::Base
     @max_day = business_days_after(BUSINESS_DAY_TO)
   end
 
-  def postage(items)
+  def postage_amount
     ((1.0 * items.to_a.sum(&:quantity)) / ADDITIONAL_NUM).ceil * ADDITIONAL_AMOUNT
   end
 
