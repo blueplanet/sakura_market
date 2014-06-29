@@ -19,10 +19,10 @@
     .panel.panel-info
       .panel-heading= t '.headers.amount'
       .panel-body
-        = f.input :postage, input_html: { disabled: true, value: @order.postage_amount }
-        = f.input :fee, input_html: { disabled: true, value: @order.fee_amount }
-        = f.input :tax, input_html: { disabled: true, value: @order.tax_amount }
+        = f.input :postage, input_html: { readonly: true, value: @order.postage_amount }
+        = f.input :fee, input_html: { readonly: true, value: @order.fee_amount }
+        = f.input :tax, input_html: { readonly: true, value: @order.tax_amount }
         hr
-        = f.input :total, input_html: { disabled: true, value: @order.total_amount }
+        = f.input :total, input_html: { readonly: true, value: @order.total_amount }
 
     = f.submit t('.create'), class: 'btn btn-primary'

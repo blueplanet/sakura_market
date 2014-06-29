@@ -19,6 +19,6 @@ class OrdersController < ApplicationController
   private
     def order_params
       params.require(:order).permit(:name, :tel, :zipcode, :address, 
-        :delivery_day, :delivery_time)
+        :delivery_day, :delivery_time, :postage, :fee, :tax, :total)
     end
 end
