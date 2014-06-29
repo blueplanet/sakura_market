@@ -40,8 +40,8 @@ class Order < ActiveRecord::Base
     ((1.0 * items.to_a.sum(&:quantity)) / ADDITIONAL_NUM).ceil * ADDITIONAL_AMOUNT
   end
 
-  def fee(items)
-    case items.to_a.sum { |item| item.price * item.quantity }
+  def fee_amount
+    case cart.total_amount
     when "> 100_000"
       1_000
     when "> 30_000"
@@ -53,15 +53,12 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def tax_amount(items)
-    items_amount = items.to_a.sum { |item| item.price * item.quantity }
-    (items_amount + postage(items) + fee(items)) * Settings.excise_percent / 100
+  def tax_amount
+    (cart.total_amount + postage_amount + fee_amount) * Settings.excise_percent / 100
   end
 
-  def total(items)
-    items_amount = items.to_a.sum { |item| item.price * item.quantity }
-
-    ((items_amount + postage(items) + fee(items)) * (100.0 + Settings.excise_percent) / 100).to_i
+  def total
+    cart.total_amount + postage_amount + fee_amount + tax_amount
   end
 
   private

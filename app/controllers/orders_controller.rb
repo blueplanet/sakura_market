@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def new
-    @order = Order.new
+    @order = Order.new cart: current_cart
 
     current_user.default_address.try :copy_to, @order
   end
