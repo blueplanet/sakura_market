@@ -38,18 +38,22 @@ class Order < ActiveRecord::Base
   end
 
   def fee(items)
-    origin_fee = case items.to_a.sum { |item| item.product.price * item.quantity }
-      when "> 100_000"
-        1_000
-      when "> 30_000"
-        600
-      when "> 10_000"
-        400
-      else
-        300
-      end
+    case items.to_a.sum { |item| item.price * item.quantity }
+    when "> 100_000"
+      1_000
+    when "> 30_000"
+      600
+    when "> 10_000"
+      400
+    else
+      300
+    end
+  end
 
-    (100.0 + Settings.excise_percent) / 100 * origin_fee
+  def total(items)
+    items_amount = items.to_a.sum { |item| item.price * item.quantity }
+
+    ((items_amount + postage(items) + fee(items)) * (100.0 + Settings.excise_percent) / 100).to_i
   end
 
   private

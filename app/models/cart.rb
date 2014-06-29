@@ -3,6 +3,6 @@ class Cart < ActiveRecord::Base
   has_many :items, class_name: 'CartItem'
 
   def total_amount
-    items.inject(0) { |sum, item| sum + item.product.price * item.quantity }
+    items.to_a.sum { |item| item.price * item.quantity }
   end
 end
