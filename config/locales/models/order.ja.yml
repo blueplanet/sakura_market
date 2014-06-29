@@ -12,6 +12,7 @@ ja:
         delivery_time: 配送時間帯
         postage: 送料
         fee: 代引き手数料
+        tax: 消費税
         total_amount: 合計
     errors:
       messages:

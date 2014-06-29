@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
 
   attr_reader :min_day, :max_day
+  attr_accessor :tax
 
   validates :name, presence: true
   validates :tel, presence: true
@@ -48,6 +49,11 @@ class Order < ActiveRecord::Base
     else
       300
     end
+  end
+
+  def tax_amount(items)
+    items_amount = items.to_a.sum { |item| item.price * item.quantity }
+    (items_amount + postage(items) + fee(items)) * Settings.excise_percent / 100
   end
 
   def total(items)
