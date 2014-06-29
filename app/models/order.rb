@@ -57,7 +57,7 @@ class Order < ActiveRecord::Base
     (cart.total_amount + postage_amount + fee_amount) * Settings.excise_percent / 100
   end
 
-  def total
+  def total_amount
     cart.total_amount + postage_amount + fee_amount + tax_amount
   end
 
