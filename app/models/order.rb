@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
 
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
 
+  delegate :items, to: :cart
+
   attr_reader :min_day, :max_day
 
   validates :name, presence: true
@@ -18,6 +20,12 @@ class Order < ActiveRecord::Base
   validates :delivery_time, presence: true
 
   belongs_to :user
+  has_one :cart
+
+  after_create :set_order_info_to_cart
+  def set_order_info_to_cart
+    cart.update checkouted: true
+  end
 
   after_create :set_default_address, if: -> { user.default_address.blank? }
   def set_default_address
@@ -33,12 +41,12 @@ class Order < ActiveRecord::Base
     @max_day = business_days_after(BUSINESS_DAY_TO)
   end
 
-  def postage(items)
+  def postage_amount
     ((1.0 * items.to_a.sum(&:quantity)) / ADDITIONAL_NUM).ceil * ADDITIONAL_AMOUNT
   end
 
-  def fee(items)
-    case items.to_a.sum { |item| item.price * item.quantity }
+  def fee_amount
+    case cart.total_amount
     when "> 100_000"
       1_000
     when "> 30_000"
@@ -50,15 +58,12 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def tax_amount(items)
-    items_amount = items.to_a.sum { |item| item.price * item.quantity }
-    (items_amount + postage(items) + fee(items)) * Settings.excise_percent / 100
+  def tax_amount
+    (cart.total_amount + postage_amount + fee_amount) * Settings.excise_percent / 100
   end
 
-  def total(items)
-    items_amount = items.to_a.sum { |item| item.price * item.quantity }
-
-    ((items_amount + postage(items) + fee(items)) * (100.0 + Settings.excise_percent) / 100).to_i
+  def total_amount
+    cart.total_amount + postage_amount + fee_amount + tax_amount
   end
 
   private

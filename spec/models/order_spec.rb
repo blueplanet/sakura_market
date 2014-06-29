@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Order do
   it { should respond_to :min_day }
   it { should respond_to :max_day }
+  it { should respond_to :cart }
+  it { should respond_to :items }
 
   subject(:order) { Order.new }
 
@@ -17,20 +19,24 @@ describe Order do
   end
 
 
-  describe '#postage' do
-    subject { order.postage(items) }
+  describe '#postage_amount' do
+    subject { order.postage_amount }
+
+    let(:cart) { }
 
     context '4個の場合' do
-      let(:items) { FactoryGirl.create_list(:cart_item, 4) }
+      before { order.stub_chain('cart.items').and_return FactoryGirl.create_list(:cart_item, 4) }
       it { should eq 600 }
     end
 
     context '6個の場合' do
-      let(:items) do
-        items = []
-        items << FactoryGirl.create(:cart_item)
-        items << FactoryGirl.create(:cart_item, quantity: 2)
-        items << FactoryGirl.create(:cart_item, quantity: 3)
+      before do 
+        order.stub_chain('cart.items').and_return do
+          items = []
+          items << FactoryGirl.create(:cart_item)
+          items << FactoryGirl.create(:cart_item, quantity: 2)
+          items << FactoryGirl.create(:cart_item, quantity: 3)
+        end
       end
 
       it { should eq 1200 }
@@ -38,7 +44,8 @@ describe Order do
   end
 
   describe '#set_default_address' do
-    let(:order) { build(:order) }
+    let(:cart) { create(:cart) }
+    let(:order) { build(:order, cart: cart) }
 
     context 'デフォルトアドレスが保存されてない場合' do
       it 'デフォルトアドレスが新規される' do
