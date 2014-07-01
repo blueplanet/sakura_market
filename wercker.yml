@@ -22,7 +22,7 @@ build:
 
         - script:
                name: rspec
-               code: bundle exec rspec
+               code: COVERALLS_REPO_TOKEN=p7iCzIO9SEzKYMOrxB0dCi3xJMTw1iNzm bundle exec rspec
     after-steps:
         - hipchat-notify:
             token: $HIPCHAT_TOKEN
