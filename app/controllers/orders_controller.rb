@@ -19,6 +19,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = Order.find params[:id]
+  end
+
   private
     def order_params
       params.require(:order).permit(:name, :tel, :zipcode, :address, 
