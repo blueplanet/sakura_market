@@ -5,12 +5,12 @@
 #orders.list-group
   - @orders.each do |order|
     = link_to order, class: 'list-group-item'
-      .col-sm-3
-        h4.list-group-item-heading= l order.created_at.to_date, format: :long
+      h4
+        .label.label-info= l order.created_at.to_date, format: :long
+        = t '.products', count: order.items.count
         = t '.total_amount'
-        = number_with_delimiter order.total_amount
-      .col-sm-3
-      .col-sm-3
+        .label.label-warning= number_with_delimiter order.total_amount
+        '円
 
 center
   = paginate @orders

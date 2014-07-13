@@ -10,3 +10,4 @@ ja:
     index:
       title: 注文履歴
       total_amount: 合計
+      products: "商品 %{count}件"
