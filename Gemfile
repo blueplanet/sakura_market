@@ -39,6 +39,7 @@ end
 group :development do
   gem 'pry-rails'
   gem 'guard-rspec'
+  gem 'guard-livereload'
   gem 'spring-commands-rspec'
   gem 'launchy'
 end
