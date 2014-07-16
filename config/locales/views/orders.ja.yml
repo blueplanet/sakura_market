@@ -6,6 +6,8 @@ ja:
         address: 送付先
         delivery: 配送日時  
         amount: 料金
+    show:
+      title: 注文情報
 
     index:
       title: 注文履歴

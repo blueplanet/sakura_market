@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find params[:id]
+    @items = @order.cart.items.page params[:page]
   end
 
   private
