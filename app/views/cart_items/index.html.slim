@@ -1,0 +1,18 @@
+.row.view-cart
+  .col-md-12
+    table.table.table-striped
+      thead
+        tr
+          td= t 'activerecord.attributes.product.name'
+          td width='20%' = t 'activerecord.attributes.product.image'
+          td width='20%' = t '.captions.quantity'
+          td width='10%' = t 'activerecord.attributes.product.price'
+          td width='10%' = t '.captions.sum'
+      tbody
+        = render partial: 'cart_items/cart_item', collection: items
+        tr
+          td
+          td
+          td
+          td.text-right = t '.captions.total'
+          td.text-right = number_with_delimiter(current_cart.total_amount)

@@ -1,0 +1,16 @@
+.page-header
+  h2 
+    = t '.title'
+
+#orders.list-group
+  - @orders.each do |order|
+    = link_to order, class: 'list-group-item'
+      h4
+        .label.label-info= l order.created_at.to_date, format: :long
+        = t '.products', count: order.items.count
+        = t '.total_amount'
+        .label.label-warning= number_with_delimiter order.total_amount
+        '円
+
+center
+  = paginate @orders

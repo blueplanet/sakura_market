@@ -27,6 +27,12 @@ class Order < ActiveRecord::Base
     cart.update checkouted: true
   end
 
+  before_save :set_total_amount
+  def set_total_amount
+    # TODO : itemsの集計値を加算
+    total_amount = postage + fee
+  end
+
   after_create :set_default_address, if: -> { user.default_address.blank? }
   def set_default_address
     default = DefaultAddress.new user: user

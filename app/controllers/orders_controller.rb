@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  def index
+    @orders = Order.order(created_at: :desc).page(params[:page]).per(5)
+  end
+
   def new
     @order = Order.new cart: current_cart
 
@@ -13,6 +17,11 @@ class OrdersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @order = Order.find params[:id]
+    @items = @order.cart.items.page params[:page]
   end
 
   private

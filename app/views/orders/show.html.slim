@@ -1,0 +1,54 @@
+.page-header
+  h2= t '.title'
+
+= simple_form_for @order,
+    html: {class: 'form-horizontal col-md-8 col-md-offset-2'},
+    defaults: {input_html: {readonly: true}},
+    wrapper: :horizontal_form do |f|
+  .panel.panel-info
+    .panel-heading= t 'orders.new.headers.address'
+    .panel-body
+      = f.input :name
+      = f.input :tel
+      = f.input :zipcode
+      = f.input :address
+
+  .panel.panel-info
+    .panel-heading= t 'orders.new.headers.delivery'
+    .panel-body
+      = f.input :delivery_day, as: :string, required: true, input_html: { class: 'date_picker', required: true, data: {minDays: @order.min_day - Date.today, maxDays: @order.max_day - Date.today}}
+      = f.input :delivery_time, as: :select
+
+  .panel.panel-info
+    .panel-heading= t 'orders.new.headers.amount'
+    .panel-body
+      = f.input :postage, input_html: {value: @order.postage_amount}
+      = f.input :fee, input_html: {value: @order.fee_amount}
+      = f.input :tax, input_html: {value: @order.tax_amount}
+      hr
+      = f.input :total_amount, input_html: {value: @order.total_amount}
+hr
+.row
+  .col-md-12
+    table.table.table-striped
+      thead
+        tr
+          td= t 'activerecord.attributes.product.name'
+          td width='20%' = t 'activerecord.attributes.product.image'
+          td width='20%' = t '.captions.quantity'
+          td width='10%' = t 'activerecord.attributes.product.price'
+          td width='10%' = t '.captions.sum'
+      tbody
+        - @order.items.each do |item|
+          tr
+            td = link_to truncate(item.name, lengh: 80), item.product
+            td.text-center = link_to image_tag(item.product.image_url.to_s, class: 'cart_item_image'), item.product
+            td = number_with_delimiter(item.quantity)
+            td.text-right = number_with_delimiter(item.price)
+            td.text-right = number_with_delimiter(item.price * item.quantity)
+        tr
+          td
+          td
+          td
+          td.text-right = t '.captions.total'
+          td.text-right = number_with_delimiter(@order.cart.total_amount)
