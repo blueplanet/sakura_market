@@ -20,7 +20,7 @@ feature 'ユーザは、カートにある商品を注文したい' do
   scenario 'カートページの注文ボタンをクリックすると、注文ページが表示される' do
     expect(current_path).to eq new_order_path
 
-    expect(find(:css, 'input#order_postage').value).to eql '600'
+    expect(find(:css, 'input#order_postage_amount').value).to eql '600'
   end
 
   scenario '送付情報を入力し注文すると注文が保存される' do
@@ -36,10 +36,6 @@ feature 'ユーザは、カートにある商品を注文したい' do
     expect(page.current_path).to eq root_path
 
     order = Order.last
-    expect(order.postage).not_to be_nil
-    expect(order.fee).not_to be_nil
-    expect(order.tax).not_to be_nil
-    expect(order.total).not_to be_nil
 
     expect(order.cart).not_to be_nil
     expect(order.cart).to be_checkouted
