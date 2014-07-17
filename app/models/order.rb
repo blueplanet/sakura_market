@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
 
   delegate :items, to: :cart
 
-  attr_reader :min_day, :max_day
+  attr_reader :min_day, :max_day, :postage_amount, :fee_amount, :tax_amount
 
   validates :name, presence: true
   validates :tel, presence: true
@@ -25,12 +25,6 @@ class Order < ActiveRecord::Base
   after_create :set_order_info_to_cart
   def set_order_info_to_cart
     cart.update checkouted: true
-  end
-
-  before_save :set_total_amount
-  def set_total_amount
-    # TODO : itemsの集計値を加算
-    total_amount = postage + fee
   end
 
   after_create :set_default_address, if: -> { user.default_address.blank? }

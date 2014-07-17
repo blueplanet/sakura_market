@@ -18,7 +18,6 @@ describe Order do
     it { expect(subject.errors.messages).to include :delivery_day }
   end
 
-
   describe '#postage_amount' do
     subject { order.postage_amount }
 
