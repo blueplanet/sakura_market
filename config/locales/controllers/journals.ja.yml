@@ -2,3 +2,5 @@ ja:
   journals:
     create:
       created: 日記を作成しました。
+    update:
+      updated: 日記を更新しました。

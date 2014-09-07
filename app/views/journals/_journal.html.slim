@@ -3,5 +3,7 @@
     = link_to journal.title, journal
     = journal.updated_at
 
+    = link_to t('.edit'), edit_journal_path(journal) if journal.user == current_user
+
   .panel-body
     = simple_format journal.body

@@ -24,11 +24,9 @@ class JournalsController < ApplicationController
   def update
     respond_to do |format|
       if @journal.update(journal_params)
-        format.html { redirect_to @journal, notice: 'Journal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @journal }
+        format.html { redirect_to journals_path, notice: t('.updated') }
       else
         format.html { render :edit }
-        format.json { render json: @journal.errors, status: :unprocessable_entity }
       end
     end
   end

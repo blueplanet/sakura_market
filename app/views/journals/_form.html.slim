@@ -5,5 +5,6 @@
     = f.input :title, input_html: { maxlength: 20 }
     = f.input :body, input_html: { rows: 10 }
 
-  .form-actions
+  .form-actions.btn-group
     = f.button :submit, class: 'btn btn-primary'
+    = link_to t('links.cancel'), :back, class: 'btn btn-default'
