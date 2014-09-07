@@ -12,7 +12,7 @@ html
           = link_to t('site.title'), root_path, class: 'navbar-brand'
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            li class="#{'active' if current_page?(root_path)}"
+            li class="#{'active' if current_page?(products_path)}"
               = link_to t('links.catalog'), root_path
           = render 'user_links'
 

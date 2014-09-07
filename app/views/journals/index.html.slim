@@ -1,3 +1,5 @@
-= link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary'
+.btn-group
+  = link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary'
 
-= render @journals
+#journals
+  = render @journals
