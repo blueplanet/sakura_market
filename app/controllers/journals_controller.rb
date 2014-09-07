@@ -14,11 +14,9 @@ class JournalsController < ApplicationController
 
     respond_to do |format|
       if @journal.save
-        format.html { redirect_to @journal, notice: 'Journal was successfully created.' }
-        format.json { render :show, status: :created, location: @journal }
+        format.html { redirect_to journals_path, notice: t('.created') }
       else
         format.html { render :new }
-        format.json { render json: @journal.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -49,6 +47,6 @@ class JournalsController < ApplicationController
     end
 
     def journal_params
-      params.requre(:journal).permit(:title, :body)
+      params.require(:journal).permit(:title, :body)
     end
 end

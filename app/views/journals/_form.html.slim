@@ -1,0 +1,9 @@
+= simple_form_for(@journal) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title, input_html: { maxlength: 20 }
+    = f.input :body, input_html: { rows: 10 }
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
