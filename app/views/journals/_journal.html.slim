@@ -1,9 +1,10 @@
 .panel.panel-default
   .panel-heading
     = link_to journal.title, journal
-    = journal.updated_at
-
-    = link_to t('.edit'), edit_journal_path(journal) if journal.user == current_user
+    =< l journal.updated_at
 
   .panel-body
     = simple_format journal.body
+
+  .panel-footer
+    = link_to t('links.edit'), edit_journal_path(journal), class: 'btn btn-success btn-sm' if journal.user == current_user

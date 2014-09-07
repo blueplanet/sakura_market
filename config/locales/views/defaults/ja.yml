@@ -11,6 +11,8 @@ ja:
     registration: ユーザ登録
     catalog: カタログ
     orders: 注文履歴
+    edit: 編集
+    back: 戻る
     cancel: キャンセル
 
   strings:

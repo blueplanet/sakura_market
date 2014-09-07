@@ -14,7 +14,7 @@ class JournalsController < ApplicationController
 
     respond_to do |format|
       if @journal.save
-        format.html { redirect_to journals_path, notice: t('.created') }
+        format.html { redirect_to root_path, notice: t('.created') }
       else
         format.html { render :new }
       end
@@ -24,7 +24,7 @@ class JournalsController < ApplicationController
   def update
     respond_to do |format|
       if @journal.update(journal_params)
-        format.html { redirect_to journals_path, notice: t('.updated') }
+        format.html { redirect_to root_path, notice: t('.updated') }
       else
         format.html { render :edit }
       end

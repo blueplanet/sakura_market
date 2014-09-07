@@ -6,3 +6,5 @@ ja:
       title: 新しい日記
     edit:
       title: 日記編集
+    show:
+      edit: 編集
