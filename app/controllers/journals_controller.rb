@@ -1,4 +1,5 @@
 class JournalsController < ApplicationController
+  before_action :authenticate_user!, except:[:index, :show]
   before_action :set_journal, only: [:show, :edit, :update, :destroy]
 
   def index
