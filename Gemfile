@@ -42,6 +42,7 @@ group :development do
   gem 'guard-livereload'
   gem 'spring-commands-rspec'
   gem 'launchy'
+  gem 'quiet_assets'
 end
 
 group :test do

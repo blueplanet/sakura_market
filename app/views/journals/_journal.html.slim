@@ -1,6 +1,8 @@
 .panel.panel-default
   .panel-heading
-    = link_to journal.title, journal
+    => link_to journal.title, journal
+    |by
+    =< journal.user.nick_name
     =< l journal.updated_at
 
   .panel-body

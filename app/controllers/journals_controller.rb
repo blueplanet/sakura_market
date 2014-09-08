@@ -10,7 +10,7 @@ class JournalsController < ApplicationController
   end
 
   def create
-    @journal = Journal.new(journal_params)
+    @journal = Journal.new(journal_params.merge user: current_user)
 
     respond_to do |format|
       if @journal.save
