@@ -1,0 +1,6 @@
+- if user_signed_in?
+  .btn-group
+    = link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary'
+
+#journals
+  = render @journals

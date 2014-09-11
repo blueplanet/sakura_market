@@ -1,0 +1,10 @@
+ja:
+  journals:
+    index:
+      new_journal: 新しい日記を書く
+    new:
+      title: 新しい日記
+    edit:
+      title: 日記編集
+    show:
+      edit: 編集

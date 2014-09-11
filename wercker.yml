@@ -28,6 +28,10 @@ build:
             token: $HIPCHAT_TOKEN
             room-id: 563331
             from-name: wercker
+        - sherzberg/slack-notify:
+            subdomain: wercker
+            token: $SLACK_TOKEN
+            channel: sakura_market
 deploy:
     steps:
         - heroku-deploy:

@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    model:
+      journal: 日記
+    attributes:
+      journal:
+        title: タイトル
+        body: 内容
