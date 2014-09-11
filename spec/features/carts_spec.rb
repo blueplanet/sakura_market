@@ -5,7 +5,7 @@ feature 'ユーザは、自分のカートを管理したい' do
     FactoryGirl.create_list :product, 3
 
     login
-    visit root_path
+    visit products_path
   end
 
   given(:product) { Product.first }

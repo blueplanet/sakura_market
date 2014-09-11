@@ -7,11 +7,11 @@ feature 'ユーザは、カートにある商品を注文したい' do
     login
 
     2.times do
-      visit root_path
+      visit products_path
       all(:link, I18n.t('products.common.add_to_cart')).first.click
     end
 
-    visit root_path
+    visit products_path
     all(:link, I18n.t('products.common.add_to_cart')).last.click
 
     find(:link, I18n.t('carts.show.checkout')).click
