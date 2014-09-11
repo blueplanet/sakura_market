@@ -12,11 +12,11 @@ describe JournalsController do
     end
 
     it "routes to #show" do
-      get("/journals/1").should route_to("journals#show", :id => "1")
+      get("/journals/1").should route_to("journals#show", id: "1")
     end
 
     it "routes to #edit" do
-      get("/journals/1/edit").should route_to("journals#edit", :id => "1")
+      get("/journals/1/edit").should route_to("journals#edit", id: "1")
     end
 
     it "routes to #create" do
@@ -24,11 +24,11 @@ describe JournalsController do
     end
 
     it "routes to #update" do
-      put("/journals/1").should route_to("journals#update", :id => "1")
+      put("/journals/1").should route_to("journals#update", id: "1")
     end
 
     it "routes to #destroy" do
-      delete("/journals/1").should route_to("journals#destroy", :id => "1")
+      delete("/journals/1").should route_to("journals#destroy", id: "1")
     end
 
   end
