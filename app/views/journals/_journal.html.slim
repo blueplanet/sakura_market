@@ -10,3 +10,4 @@
 
   .panel-footer
     = link_to t('links.edit'), edit_journal_path(journal), class: 'btn btn-success btn-sm' if journal.user == current_user
+    = link_to t('links.delete'), journal_path(journal), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: t('confirmations.delete') }
