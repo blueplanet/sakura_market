@@ -13,7 +13,7 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li class="#{'active' if current_page?(products_path)}"
-              = link_to t('links.catalog'), root_path
+              = link_to t('links.catalog'), products_path
           = render 'user_links'
 
     .container
