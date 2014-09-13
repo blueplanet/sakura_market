@@ -5,4 +5,6 @@ class Journal < ActiveRecord::Base
   validates :body, presence: true, length: { in: 4..1000 }
 
   default_scope { order(updated_at: :desc) }
+
+  mount_uploader :image, ImageUploader
 end

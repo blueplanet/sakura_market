@@ -6,6 +6,7 @@
     =< l journal.updated_at
 
   .panel-body
+    = image_tag journal.image_url, class: 'journal-image img-rounded' if journal.image?
     = simple_format journal.body
 
   .panel-footer

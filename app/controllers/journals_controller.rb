@@ -47,10 +47,10 @@ class JournalsController < ApplicationController
   end
 
   def journal_params
-    params.require(:journal).permit(:title, :body)
+    params.require(:journal).permit(:title, :body, :image)
   end
 
   def only_self
-    raise ActiveRecord::RecordNotFound unles @journal.user == current_user
+    raise ActiveRecord::RecordNotFound unless @journal.user == current_user
   end
 end
