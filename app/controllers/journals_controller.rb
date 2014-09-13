@@ -43,14 +43,10 @@ class JournalsController < ApplicationController
   private
 
   def set_journal
-    @journal = Journal.find(params[:id])
+    @journal = current_user.journals.find(params[:id])
   end
 
   def journal_params
     params.require(:journal).permit(:title, :body, :image)
-  end
-
-  def only_self
-    raise ActiveRecord::RecordNotFound unless @journal.user == current_user
   end
 end
