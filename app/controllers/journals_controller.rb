@@ -1,7 +1,6 @@
 class JournalsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_journal, only: [:show, :edit, :update, :destroy]
-  before_action :only_self, only: [:edit, :update, :destroy]
 
   def index
     @journals = Journal.all.page params[:page]
@@ -36,7 +35,7 @@ class JournalsController < ApplicationController
   def destroy
     @journal.destroy
     respond_to do |format|
-      format.html { redirect_to journals_url }
+      format.html { redirect_to journals_url, notice: t('.deleted') }
     end
   end
 
