@@ -5,5 +5,6 @@
 
 .btn-group
   = link_to t('.edit'), edit_journal_path(@journal), class: 'btn btn-success' if @journal.user == current_user
-  = link_to t('links.delete'), journal_path(@journal), class: 'btn btn-danger', method: :delete, data: { confirm: t('confirmations.delete') }
+  - if current_user == @journal.user
+    = link_to t('links.delete'), journal_path(@journal), class: 'btn btn-danger', method: :delete, data: { confirm: t('confirmations.delete') }
   = link_to t('links.back'), root_path, class: 'btn btn-default'
