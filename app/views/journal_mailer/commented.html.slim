@@ -2,8 +2,9 @@
 br
 
 |コメント内容
-= @comment.content
+= simple_format @comment.content
 br
 
 |---
+br
 = link_to @comment.journal.title, journal_url(@comment.journal)
