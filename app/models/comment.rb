@@ -4,11 +4,11 @@ class Comment < ActiveRecord::Base
 
   default_scope { order(created_at: :desc).includes(:user) }
 
-  after_create :send_mail_to_journal_owner
+  after_create :send_commented_mail
 
   private
 
-  def send_mail_to_journal_owner
+  def send_commented_mail
     JournalMailer.commented(self).deliver
   end
 end
