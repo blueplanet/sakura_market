@@ -35,7 +35,7 @@ build:
 deploy:
     steps:
         - heroku-deploy:
-            run: rake db:migrate --app $APP_NAME
+            run: rake db:migrate
 
     after-steps:
         - hipchat-notify:
