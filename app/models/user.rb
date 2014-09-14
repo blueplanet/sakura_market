@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   has_one :default_address
   has_many :journals
   has_many :goods
+  has_many :good_journals, through: :goods, source: :journal
 end
