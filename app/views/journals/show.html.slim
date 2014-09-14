@@ -7,4 +7,15 @@
   = link_to t('.edit'), edit_journal_path(@journal), class: 'btn btn-success' if @journal.user == current_user
   - if current_user == @journal.user
     = link_to t('links.delete'), journal_path(@journal), class: 'btn btn-danger', method: :delete, data: { confirm: t('confirmations.delete') }
-  = link_to t('links.back'), root_path, class: 'btn btn-default'
+
+hr
+
+#comments
+  - unless @journal.user == current_user
+    = simple_form_for [@journal, Comment.new] do |f|
+      = f.input :content, input_html: { rows: 3 }
+      = f.submit t('.add_comment'), class: 'btn btn-primary'
+
+  ul.media-list
+    = render @comments
+  = paginate @comments
