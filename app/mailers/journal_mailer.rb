@@ -6,4 +6,10 @@ class JournalMailer < ActionMailer::Base
 
     mail to: @comment.journal.user.email, content_type: "text/html"
   end
+
+  def gooded(good)
+    @good = good
+
+    mail to: @good.journal.user.email, content_type: "text/html"
+  end
 end
