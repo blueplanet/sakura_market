@@ -6,9 +6,5 @@
     =< l journal.updated_at
 
   .panel-body
+    = image_tag journal.image_url, class: 'journal-image img-rounded' if journal.image?
     = simple_format journal.body
-
-  .panel-footer
-    = link_to t('links.edit'), edit_journal_path(journal), class: 'btn btn-success btn-sm' if journal.user == current_user
-    - if current_user == journal.user
-      = link_to t('links.delete'), journal_path(journal), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: t('confirmations.delete') }

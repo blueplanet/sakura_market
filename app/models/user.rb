@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_one :default_address
+  has_many :journals
 end

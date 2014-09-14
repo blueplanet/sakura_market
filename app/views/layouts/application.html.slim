@@ -2,8 +2,8 @@ doctype
 html
   head
     title= t('site.title')
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
   body id="#{controller_name}-#{action_name}"
     .navbar.navbar-default.navbar-fixed-top role='navigation'
@@ -13,7 +13,7 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li class="#{'active' if current_page?(products_path)}"
-              = link_to t('links.catalog'), root_path
+              = link_to t('links.catalog'), products_path
           = render 'user_links'
 
     .container
