@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
   has_one :default_address
   has_many :journals
+  has_many :goods
 end
