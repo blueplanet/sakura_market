@@ -1,5 +1,6 @@
 class Journal < ActiveRecord::Base
   belongs_to :user
+  has_many :comments
 
   validates :title, presence: true, length: { in: 4..50 }
   validates :body, presence: true, length: { in: 4..1000 }

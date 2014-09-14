@@ -1,9 +1,14 @@
 class JournalsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_journal, only: [:show, :edit, :update, :destroy]
+  before_action :set_journal, only: [:edit, :update, :destroy]
 
   def index
     @journals = Journal.all.page params[:page]
+  end
+
+  def show
+    @journal = Journal.find params[:id]
+    @comments = @journal.comments.page params[:page]
   end
 
   def new

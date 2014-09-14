@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :carts, only: :show
   resources :orders, only: [:new, :create, :index, :show]
   resources :cart_items, only: [:create, :update, :destroy]
-  resources :journals
+  resources :journals do
+    resources :comments, only: [:create, :destroy]
+  end
 
   root 'journals#index'
 end
