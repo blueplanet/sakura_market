@@ -9,6 +9,6 @@
     = image_tag journal.image_url, class: 'journal-image img-rounded' if journal.image?
     = simple_format journal.body
 
-    - unless current_user == journal.user
+    - if current_user and current_user != journal.user
       .journal-buttons
         = good_button journal
