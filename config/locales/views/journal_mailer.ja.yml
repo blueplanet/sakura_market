@@ -1,0 +1,4 @@
+ja:
+  journal_mailer:
+    commented:
+      subject: 日記コメント通知
