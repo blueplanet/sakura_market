@@ -2,6 +2,10 @@ ja:
   journals:
     index:
       new_journal: 新しい日記を書く
+    journal:
+      new_comment: コメントを書く
+      title: 新しいコメント
+      create_comment: コメントする
     new:
       title: 新しい日記
     edit:
