@@ -3,4 +3,4 @@ li.media
     h4.media-heading
       => comment.user.nick_name
       span.small = l comment.created_at
-    = comment.content
+    = simple_format comment.content
