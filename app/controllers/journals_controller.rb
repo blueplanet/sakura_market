@@ -51,6 +51,6 @@ class JournalsController < ApplicationController
   end
 
   def journal_params
-    params.require(:journal).permit(:title, :body, :image)
+    params.require(:journal).permit(:title, :body, :image, :image_cache)
   end
 end
