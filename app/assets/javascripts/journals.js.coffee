@@ -10,3 +10,6 @@ $ ->
     fr.onload = (event) ->
       $preview.attr src: event.target.result
       $preview.removeClass('hide')
+
+  $('#commentModal').on 'hide.bs.modal', ->
+    $('#commentModal').find('form')[0].reset()
