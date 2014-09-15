@@ -4,8 +4,9 @@
   .form-inputs
     = f.input :title, input_html: { maxlength: 20 }
     = f.input :body, input_html: { rows: 10 }
-    = f.input :image
-    = image_tag journal.image_url, class: 'journal-image' if journal.image?
+    = f.input :image, input_html: { class: 'journal-image-field'}
+    = image_tag journal.image_url, class: "journal-image #{journal.image? ? '' : 'hide' }"
+    = f.hidden_field :image_cache
 
   .form-actions.btn-group
     = f.button :submit, class: 'btn btn-primary'
