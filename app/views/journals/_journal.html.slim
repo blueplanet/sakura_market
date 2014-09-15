@@ -10,5 +10,18 @@
     = simple_format journal.body
 
     - if current_user and current_user != journal.user
-      .journal-buttons
+      .journal-buttons.btn-groups
         = good_button journal
+        = link_to t('.new_comment'), '#', class: 'btn btn-primary', "data-toggle" => "modal", "data-target" => "#commentModal"
+
+#commentModal.modal.fade role="dialog" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      = simple_form_for [journal, Comment.new] do |f|
+        .modal-header
+          h4.modal-title = t '.title'
+        .modal-body
+          = f.input :content, input_html: { autofocus: true, rows: 5 }
+        .modal-footer
+          = link_to t('links.cancel'), '#', class: 'btn btn-default', 'data-dismiss' => 'modal'
+          = f.submit t('.create_comment'), class: 'btn btn-primary'
