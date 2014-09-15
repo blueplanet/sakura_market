@@ -1,3 +1,3 @@
 $ ->
   $('a.good').on 'ajax:success', ->
-    $(@).addClass('disabled')
+    $(@).removeClass('btn-success').addClass('btn-default disabled')
