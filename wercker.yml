@@ -42,7 +42,7 @@ deploy:
             token: $HIPCHAT_TOKEN
             room-id: 563331
             from-name: wercker
-        - sherzberg/slack-notify:
-            subdomain: $SLACK_SUBDOMAIN
+        - wantedly/pretty-slack-notify:
+            team: $SLACK_TEAM
             token: $SLACK_TOKEN
             channel: sakura_market
