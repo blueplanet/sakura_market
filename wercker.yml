@@ -29,7 +29,7 @@ build:
             room-id: 563331
             from-name: wercker
         - sherzberg/slack-notify:
-            subdomain: wercker
+            subdomain: $SLACK_SUBDOMAIN
             token: $SLACK_TOKEN
             channel: sakura_market
 deploy:
@@ -43,6 +43,6 @@ deploy:
             room-id: 563331
             from-name: wercker
         - sherzberg/slack-notify:
-            subdomain: wercker
+            subdomain: $SLACK_SUBDOMAIN
             token: $SLACK_TOKEN
             channel: sakura_market
