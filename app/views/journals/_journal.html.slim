@@ -12,9 +12,9 @@
     - if current_user and current_user != journal.user
       .journal-buttons.btn-groups
         = good_button journal
-        = link_to t('.new_comment'), '#', class: 'btn btn-primary', "data-toggle" => "modal", "data-target" => "#commentModal"
+        = link_to t('.new_comment'), '#', class: 'btn btn-primary', "data-toggle" => "modal", "data-target" => "#commentModal#{journal.id}"
 
-#commentModal.modal.fade role="dialog" aria-hidden="true"
+.modal.fade id="commentModal#{journal.id}" role="dialog" aria-hidden="true"
   .modal-dialog
     .modal-content
       = simple_form_for [journal, Comment.new] do |f|
