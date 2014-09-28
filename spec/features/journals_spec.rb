@@ -46,14 +46,35 @@ feature 'ゲストは、日記の一覧を確認したい' do
     feature '日記の詳細を確認出来る' do
       context '自分の記事の場合' do
         given!(:journal) { FactoryGirl.create :journal, user: user }
-        background { visit root_path }
+        background do
+          visit root_path
+          find(:link, journal.title).click
+        end
 
         scenario '編集・削除リンク表示される' do
-          find(:link, journal.title).click
 
           expect(page.current_path).to eq journal_path(journal)
           expect(page).to have_css "a[href='#{edit_journal_path(journal)}']"
           expect(page).to have_link '削除'
+        end
+
+        scenario '記事を更新出来る' do
+          find(:link, '編集').click
+
+          fill_in 'journal_title', with: '更新後のタイトル'
+          fill_in 'journal_body', with: '更新後の内容'
+
+          find("input[value=更新する]").click
+
+          expect(page.current_path).to eq root_path
+          expect(page).to have_content '更新後のタイトル'
+        end
+
+        scenario '記事を削除出来る' do
+          find(:link, '削除').click
+
+          expect(page.current_path).to eq root_path
+          expect(page).to_not have_content journal.title
         end
       end
     end
