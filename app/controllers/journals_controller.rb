@@ -40,7 +40,7 @@ class JournalsController < ApplicationController
   def destroy
     @journal.destroy
     respond_to do |format|
-      format.html { redirect_to journals_url, notice: t('.deleted') }
+      format.html { redirect_to root_path, notice: t('.deleted') }
     end
   end
 
