@@ -26,6 +26,7 @@ gem 'foreman'
 
 gem 'enumerize'
 gem 'settingslogic'
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -40,6 +41,7 @@ group :development do
   gem 'launchy'
   gem 'quiet_assets'
   gem 'spring'
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
