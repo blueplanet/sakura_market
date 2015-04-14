@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cart_items", force: true do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "quantity",   default: 1
     t.datetime "created_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
   add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
   add_index "cart_items", ["product_id"], name: "index_cart_items_on_product_id", using: :btree
 
-  create_table "carts", force: true do |t|
+  create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
   add_index "carts", ["order_id"], name: "index_carts_on_order_id", using: :btree
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "journal_id"
     t.text     "content"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
   add_index "comments", ["journal_id"], name: "index_comments_on_journal_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "default_addresses", force: true do |t|
+  create_table "default_addresses", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
     t.string   "tel"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
 
   add_index "default_addresses", ["user_id"], name: "index_default_addresses_on_user_id", using: :btree
 
-  create_table "goods", force: true do |t|
+  create_table "goods", force: :cascade do |t|
     t.integer  "journal_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
   add_index "goods", ["journal_id"], name: "index_goods_on_journal_id", using: :btree
   add_index "goods", ["user_id"], name: "index_goods_on_user_id", using: :btree
 
-  create_table "journals", force: true do |t|
+  create_table "journals", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "user_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
 
   add_index "journals", ["user_id"], name: "index_journals_on_user_id", using: :btree
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.string   "name"
     t.string   "tel"
     t.string   "zipcode"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "products", force: true do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
     t.integer  "price"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20140914210446) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
