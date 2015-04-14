@@ -17,7 +17,7 @@ gem 'jquery-ui-rails'
 
 gem 'kaminari'
 gem 'devise'
-gem 'simple_form', '~> 3.1.0.rc1'
+gem 'simple_form', '~> 3.1.0'
 
 gem 'carrierwave'
 gem 'mini_magick'
