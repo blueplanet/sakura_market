@@ -29,7 +29,7 @@ gem 'settingslogic'
 gem 'responders', '~> 2.0'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
 
