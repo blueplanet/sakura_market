@@ -11,9 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.core
-//= require jquery.ui.datepicker
-//= require jquery.ui.datepicker-ja
+//= require jquery-ui/core
+//= require jquery-ui/datepicker
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
