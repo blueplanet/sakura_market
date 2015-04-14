@@ -29,13 +29,13 @@ describe Order do
     end
 
     context '6個の場合' do
-      before do 
-        order.stub_chain('cart.items').and_return do
-          items = []
-          items << FactoryGirl.create(:cart_item)
-          items << FactoryGirl.create(:cart_item, quantity: 2)
-          items << FactoryGirl.create(:cart_item, quantity: 3)
-        end
+      before do
+        items = []
+        items << FactoryGirl.create(:cart_item)
+        items << FactoryGirl.create(:cart_item, quantity: 2)
+        items << FactoryGirl.create(:cart_item, quantity: 3)
+
+        order.stub_chain('cart.items').and_return items
       end
 
       it { should eq 1200 }
