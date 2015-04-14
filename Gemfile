@@ -10,8 +10,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
 
 gem 'slim-rails'
 gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
@@ -27,7 +25,6 @@ gem 'fog'
 gem 'foreman'
 
 gem 'enumerize'
-
 gem 'settingslogic'
 
 group :development, :test do
@@ -42,6 +39,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'spring'
 end
 
 group :test do
@@ -50,4 +48,8 @@ group :test do
   gem 'capybara'
 end
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+end
+
+gem 'sdoc', '~> 0.4.0', group: :doc
