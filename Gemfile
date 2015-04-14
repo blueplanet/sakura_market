@@ -12,7 +12,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
 gem 'slim-rails'
-gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass'
+gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
 gem 'kaminari'
