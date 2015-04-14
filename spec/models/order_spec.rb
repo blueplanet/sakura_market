@@ -24,7 +24,7 @@ describe Order do
     let(:cart) { }
 
     context '4個の場合' do
-      before { order.stub_chain('cart.items').and_return FactoryGirl.create_list(:cart_item, 4) }
+      before { allow(order).to receive_message_chain(:cart, :items).and_return FactoryGirl.create_list(:cart_item, 4) }
       it { should eq 600 }
     end
 
@@ -35,7 +35,7 @@ describe Order do
         items << FactoryGirl.create(:cart_item, quantity: 2)
         items << FactoryGirl.create(:cart_item, quantity: 3)
 
-        order.stub_chain('cart.items').and_return items
+        allow(order).to receive_message_chain(:cart, :items).and_return(items)
       end
 
       it { should eq 1200 }
