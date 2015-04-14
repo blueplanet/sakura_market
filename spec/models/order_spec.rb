@@ -24,7 +24,11 @@ describe Order do
     let(:cart) { }
 
     context '4個の場合' do
-      before { allow(order).to receive_message_chain(:cart, :items).and_return FactoryGirl.create_list(:cart_item, 4) }
+      before do
+        allow(order).to receive_message_chain(:cart, :items)
+          .and_return FactoryGirl.create_list(:cart_item, 4)
+      end
+
       it { should eq 600 }
     end
 
