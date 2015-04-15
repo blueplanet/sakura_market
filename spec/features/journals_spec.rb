@@ -55,6 +55,38 @@ feature 'ゲストは、日記の一覧を確認したい' do
           expect(page).to have_css "a[href='#{edit_journal_path(journal)}']"
           expect(page).to have_link '削除'
         end
+
+        scenario '編集リンクをクリックすると、編集ページに遷移できる' do
+          find(:link, journal.title).click
+
+          click_link '編集'
+          expect(page.current_path).to eq edit_journal_path(journal)
+        end
+
+        scenario '削除リンクをクリックすると、記事を削除できる' do
+          find(:link, journal.title).click
+          click_link '削除'
+
+          expect(page.current_path).to eq journals_path
+          expect(page).not_to have_content journal.title
+        end
+      end
+    end
+
+    feature '日記を編集できる' do
+      given!(:journal) { FactoryGirl.create :journal, user: user }
+      given(:new_journal) { FactoryGirl.build :journal }
+      background { visit edit_journal_path(journal) }
+
+      scenario '内容を更新し保存を押すと日記が更新される' do
+        fill_in 'journal_title', with: new_journal.title
+        fill_in 'journal_body', with: new_journal.body
+
+        click_on '更新する'
+
+        expect(page.current_path).to eq root_path
+        expect(page).to have_content new_journal.title
+        expect(page).not_to have_content journal.title
       end
     end
   end
