@@ -9,6 +9,6 @@ class Comment < ActiveRecord::Base
   private
 
   def send_commented_mail
-    JournalMailer.commented(self).deliver
+    JournalMailer.commented(self).deliver_now
   end
 end
