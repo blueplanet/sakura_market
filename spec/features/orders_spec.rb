@@ -52,4 +52,16 @@ feature 'ユーザは、注文情報を管理したい' do
       expect(page).to have_css '.list-group-item', count: 5
     end
   end
+
+  feature 'ユーザは、注文の詳細内容を確認したい' do
+    let!(:order) { FactoryGirl.create :order }
+
+    scenario '注文詳細画面に遷移すると詳細を確認できる' do
+      visit order_path(order)
+
+      expect(page).to have_css '.panel-heading', text: '送付先'
+      expect(page).to have_css '.panel-heading', text: '配送日時'
+      expect(page).to have_css '.panel-heading', text: '料金'
+    end
+  end
 end
