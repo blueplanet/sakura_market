@@ -7,5 +7,6 @@ FactoryGirl.define do
     delivery_day { Order.new.send(:business_days_after, 5) }
     delivery_time :t8_12
     user
+    cart
   end
 end
