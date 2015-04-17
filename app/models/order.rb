@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
 
-  delegate :items, to: :cart
+  delegate :items, to: :cart, allow_nil: true
 
   attr_reader :min_day, :max_day, :postage_amount, :fee_amount, :tax_amount
 
@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
 
   after_create :set_order_info_to_cart
   def set_order_info_to_cart
-    cart.update checkouted: true
+    cart.try :update, checkouted: true
   end
 
   after_create :set_default_address, if: -> { user.default_address.blank? }
@@ -80,10 +80,10 @@ class Order < ActiveRecord::Base
 
     def delivery_day_limit
       errors.add :delivery_day, :blank and return if delivery_day.blank?
-      if delivery_day < min_day or delivery_day > max_day or [0, 6].include?(delivery_day.wday) 
-        errors.add(:delivery_day, 
-          I18n.t('activerecord.errors.messages.invalid_business_day', 
-            from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO)) 
+      if delivery_day < min_day or delivery_day > max_day or [0, 6].include?(delivery_day.wday)
+        errors.add(:delivery_day,
+          I18n.t('activerecord.errors.messages.invalid_business_day',
+            from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
       end
     end
 end
