@@ -29,18 +29,20 @@ gem 'settingslogic'
 gem 'responders', '~> 2.0'
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
-  gem 'pry-rails'
+  gem 'annotate'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'spring-commands-rspec'
   gem 'launchy'
+  gem 'letter_opener'
+  gem 'pry-rails'
   gem 'quiet_assets'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'web-console', '~> 2.0'
 end
 

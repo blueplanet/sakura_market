@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  tel           :string
+#  zipcode       :string
+#  address       :string
+#  delivery_day  :date
+#  delivery_time :string
+#  created_at    :datetime
+#  updated_at    :datetime
+#  user_id       :integer
+#
+
 require 'spec_helper'
 
 describe Order do
