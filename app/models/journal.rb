@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: journals
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  body       :text
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  image      :string
+#
+
 class Journal < ActiveRecord::Base
   belongs_to :user
   has_many :comments

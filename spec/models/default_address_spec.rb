@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: default_addresses
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  name       :string
+#  tel        :string
+#  zipcode    :string
+#  address    :string
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe DefaultAddress do
