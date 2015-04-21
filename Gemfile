@@ -38,6 +38,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'launchy'
+  gem 'letter_opener'
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'spring'
