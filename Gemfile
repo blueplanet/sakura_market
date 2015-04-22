@@ -28,6 +28,8 @@ gem 'enumerize'
 gem 'settingslogic'
 gem 'responders', '~> 2.0'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
