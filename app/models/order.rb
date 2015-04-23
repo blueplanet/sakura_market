@@ -15,18 +15,17 @@
 #
 
 class Order < ActiveRecord::Base
-  ADDITIONAL_NUM = 5.freeze
-  ADDITIONAL_AMOUNT = 600.freeze
-  BUSINESS_DAY_FROM = 3.freeze
-  BUSINESS_DAY_TO = 14.freeze
+  ADDITIONAL_NUM = 5
+  ADDITIONAL_AMOUNT = 600
+  BUSINESS_DAY_FROM = 3
+  BUSINESS_DAY_TO = 14
 
   extend Enumerize
 
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
 
-  delegate :items, to: :cart, allow_nil: true
-
   attr_reader :min_day, :max_day, :postage_amount, :fee_amount, :tax_amount
+  delegate :items, to: :cart, allow_nil: true
 
   validates :name, presence: true
   validates :tel, presence: true
@@ -85,7 +84,7 @@ class Order < ActiveRecord::Base
     end
 
     def business_days_after num
-      date = Date.today
+      date = Date.current
 
       while num > 1
         date += 1
@@ -97,7 +96,7 @@ class Order < ActiveRecord::Base
 
     def delivery_day_limit
       errors.add :delivery_day, :blank and return if delivery_day.blank?
-      if delivery_day < min_day or delivery_day > max_day or [0, 6].include?(delivery_day.wday)
+      if delivery_day < min_day or max_day < delivery_day or [0, 6].include?(delivery_day.wday)
         errors.add(:delivery_day,
           I18n.t('activerecord.errors.messages.invalid_business_day',
             from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
