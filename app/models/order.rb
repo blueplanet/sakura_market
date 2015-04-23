@@ -39,23 +39,8 @@ class Order < ActiveRecord::Base
   has_one :cart
 
   after_create :set_order_info_to_cart
-  def set_order_info_to_cart
-    cart.try :update, checkouted: true
-  end
-
   after_create :set_default_address, if: -> { user.default_address.blank? }
-  def set_default_address
-    default = DefaultAddress.new user: user
-    default.copy_from self
-
-    default.save!
-  end
-
   after_initialize :initialize_business_days
-  def initialize_business_days
-    @min_day = business_days_after(BUSINESS_DAY_FROM)
-    @max_day = business_days_after(BUSINESS_DAY_TO)
-  end
 
   def postage_amount
     ((1.0 * items.to_a.sum(&:quantity)) / ADDITIONAL_NUM).ceil * ADDITIONAL_AMOUNT
@@ -83,6 +68,22 @@ class Order < ActiveRecord::Base
   end
 
   private
+    def set_order_info_to_cart
+      cart.try :update, checkouted: true
+    end
+
+    def set_default_address
+      default = DefaultAddress.new user: user
+      default.copy_from self
+
+      default.save!
+    end
+
+    def initialize_business_days
+      @min_day = business_days_after(BUSINESS_DAY_FROM)
+      @max_day = business_days_after(BUSINESS_DAY_TO)
+    end
+
     def business_days_after num
       date = Date.today
 
