@@ -89,14 +89,14 @@ class Order < ActiveRecord::Base
 
       while num > 1
         date += 1
-        num -= 1 if 1 <= date.wday and date.wday <= 5
+        num -= 1 unless date.saturday? or date.sunday?
       end
 
       date
     end
 
     def delivery_day_limit
-      if delivery_day.present? && delivery_day < min_day or max_day < delivery_day or [0, 6].include?(delivery_day.wday)
+      if delivery_day.present? && delivery_day < min_day or max_day < delivery_day or delivery_day.saturday? or delivery_day.sunday?
         errors.add(:delivery_day,
           I18n.t('activerecord.errors.messages.invalid_business_day',
             from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
