@@ -48,11 +48,11 @@ class Order < ActiveRecord::Base
 
   def fee_amount
     case cart.total_amount
-    when "> 100_000"
+    when 100_000 .. Float::INFINITY
       1_000
-    when "> 30_000"
+    when 30_000 .. 100_000
       600
-    when "> 10_000"
+    when 10_000 .. 30_000
       400
     else
       300

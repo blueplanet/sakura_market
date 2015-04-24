@@ -24,6 +24,35 @@ describe Order do
 
   subject(:order) { build :order }
 
+  describe '#fee_amount' do
+    subject { order.fee_amount }
+    let(:item) { build :cart_item, quantity: 1 }
+    before do
+      order.items.clear
+      order.items << item
+    end
+
+    context 'total_amount < 10_00' do
+      before { item.product.price = 1_000 }
+      it { should eq 300 }
+    end
+
+    context '10_000 < total_amount < 30_000' do
+      before { item.product.price = 20_000 }
+      it { should eq 400 }
+    end
+
+    context '30_000 < total_amount < 100_000' do
+      before { item.product.price = 50_000 }
+      it { should eq 600 }
+    end
+
+    context '100_000 < total_amount' do
+      before { item.product.price = 200_000 }
+      it { should eq 1000 }
+    end
+  end
+
   describe '#delivery_day_limit' do
     shared_examples_for 'invalid delivery_day' do
       it { should be_invalid }
