@@ -22,16 +22,54 @@ describe Order do
   it { should respond_to :cart }
   it { should respond_to :items }
 
-  subject(:order) { Order.new }
+  subject(:order) { build :order }
 
-  describe '#delivery_day' do
-    before do
-      subject.delivery_day = subject.min_day - 1
-      subject.valid?
+  describe '#delivery_day_limit' do
+    shared_examples_for 'invalid delivery_day' do
+      it { should be_invalid }
+      it { expect(subject.errors.messages).to include :delivery_day }
     end
 
-    it { should be_invalid }
-    it { expect(subject.errors.messages).to include :delivery_day }
+    context 'delivery_day < min_day' do
+      before do
+        subject.delivery_day = subject.min_day - 1
+        subject.valid?
+      end
+
+      it_behaves_like 'invalid delivery_day'
+    end
+
+    context 'min_day < delivery_day < max_day' do
+      context 'and, is weekend' do
+        before do
+          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find { |day| day.wday.in? [0, 6] }
+
+          subject.valid?
+        end
+
+        it_behaves_like 'invalid delivery_day'
+      end
+
+      context 'and, not weekend' do
+        before do
+          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find { |day| !day.wday.in?([0, 6]) }
+
+          subject.valid?
+        end
+
+        it { should be_valid }
+      end
+    end
+
+    context 'max_day < delivery_day' do
+      before do
+        subject.delivery_day = subject.max_day + 1
+        
+        subject.valid?
+      end
+
+      it_behaves_like 'invalid delivery_day'
+    end
   end
 
   describe '#postage_amount' do
