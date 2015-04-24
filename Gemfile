@@ -26,6 +26,7 @@ gem 'foreman'
 
 gem 'enumerize'
 gem 'settingslogic'
+gem 'business_time'
 gem 'responders', '~> 2.0'
 
 gem 'activeadmin', github: 'gregbell/active_admin'

@@ -29,7 +29,7 @@ feature 'ユーザは、注文情報を管理したい' do
       fill_in 'order_tel', with: '03-1111-2222'
       fill_in 'order_zipcode', with: '222-1111'
       fill_in 'order_address', with: '東京都品川区大井町２−３−４５５'
-      fill_in 'order_delivery_day', with: Order.new.send(:business_days_after, 5).to_s
+      fill_in 'order_delivery_day', with: 5.business_days.from_now.to_date.to_s
       select Order.delivery_time.options.first.first, from: 'order_delivery_time'
 
       click_button I18n.t('orders.new.create')

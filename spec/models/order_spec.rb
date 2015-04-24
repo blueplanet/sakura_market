@@ -22,16 +22,80 @@ describe Order do
   it { should respond_to :cart }
   it { should respond_to :items }
 
-  subject(:order) { Order.new }
+  subject(:order) { build :order }
 
-  describe '#delivery_day' do
+  describe '#fee_amount' do
+    subject { order.fee_amount }
+    let(:item) { build :cart_item, quantity: 1 }
     before do
-      subject.delivery_day = subject.min_day - 1
-      subject.valid?
+      order.items.clear
+      order.items << item
     end
 
-    it { should be_invalid }
-    it { expect(subject.errors.messages).to include :delivery_day }
+    context 'total_amount < 10_00' do
+      before { item.product.price = 1_000 }
+      it { should eq 300 }
+    end
+
+    context '10_000 < total_amount < 30_000' do
+      before { item.product.price = 20_000 }
+      it { should eq 400 }
+    end
+
+    context '30_000 < total_amount < 100_000' do
+      before { item.product.price = 50_000 }
+      it { should eq 600 }
+    end
+
+    context '100_000 < total_amount' do
+      before { item.product.price = 200_000 }
+      it { should eq 1000 }
+    end
+  end
+
+  describe '#delivery_day_limit' do
+    shared_examples_for 'invalid delivery_day' do
+      it { should be_invalid }
+      it { expect(subject.errors.messages).to include :delivery_day }
+    end
+
+    context 'delivery_day < min_day' do
+      before do
+        subject.delivery_day = subject.min_day - 1
+        subject.valid?
+      end
+
+      it_behaves_like 'invalid delivery_day'
+    end
+
+    context 'min_day < delivery_day < max_day' do
+      context 'and, is weekend' do
+        before do
+          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find { |day| !day.workday? }
+          subject.valid?
+        end
+
+        it_behaves_like 'invalid delivery_day'
+      end
+
+      context 'and, not weekend' do
+        before do
+          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find(&:workday?)
+          subject.valid?
+        end
+
+        it { should be_valid }
+      end
+    end
+
+    context 'max_day < delivery_day' do
+      before do
+        subject.delivery_day = subject.max_day + 1
+        subject.valid?
+      end
+
+      it_behaves_like 'invalid delivery_day'
+    end
   end
 
   describe '#postage_amount' do

@@ -31,7 +31,8 @@ class Order < ActiveRecord::Base
   validates :tel, presence: true
   validates :zipcode, presence: true
   validates :address, presence: true
-  validate :delivery_day_limit
+  validates :delivery_day, presence: true
+  validate :delivery_day_limit, unless: 'delivery_day.blank?'
   validates :delivery_time, presence: true
 
   belongs_to :user
@@ -47,11 +48,11 @@ class Order < ActiveRecord::Base
 
   def fee_amount
     case cart.total_amount
-    when "> 100_000"
+    when 100_000..Float::INFINITY
       1_000
-    when "> 30_000"
+    when 30_000..100_000
       600
-    when "> 10_000"
+    when 10_000..30_000
       400
     else
       300
@@ -79,27 +80,20 @@ class Order < ActiveRecord::Base
     end
 
     def initialize_business_days
-      @min_day = business_days_after(BUSINESS_DAY_FROM)
-      @max_day = business_days_after(BUSINESS_DAY_TO)
-    end
-
-    def business_days_after num
-      date = Date.current
-
-      while num > 1
-        date += 1
-        num -= 1 if 1 <= date.wday and date.wday <= 5
-      end
-
-      date
+      @min_day = BUSINESS_DAY_FROM.business_days.from_now.to_date
+      @max_day = BUSINESS_DAY_TO.business_days.from_now.to_date
     end
 
     def delivery_day_limit
-      errors.add :delivery_day, :blank and return if delivery_day.blank?
-      if delivery_day < min_day or max_day < delivery_day or [0, 6].include?(delivery_day.wday)
-        errors.add(:delivery_day,
-          I18n.t('activerecord.errors.messages.invalid_business_day',
-            from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
+      unless delivery_day.between?(min_day, max_day) && delivery_day.workday?
+        errors.add(
+          :delivery_day,
+          I18n.t(
+            'activerecord.errors.messages.invalid_business_day',
+            from: BUSINESS_DAY_FROM,
+            to: BUSINESS_DAY_TO
+          )
+        )
       end
     end
 end
