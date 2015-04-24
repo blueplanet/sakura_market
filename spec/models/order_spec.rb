@@ -71,8 +71,7 @@ describe Order do
     context 'min_day < delivery_day < max_day' do
       context 'and, is weekend' do
         before do
-          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find { |day| day.wday.in? [0, 6] }
-
+          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find { |day| !day.workday? }
           subject.valid?
         end
 
@@ -81,8 +80,7 @@ describe Order do
 
       context 'and, not weekend' do
         before do
-          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find { |day| !day.wday.in?([0, 6]) }
-
+          subject.delivery_day = (subject.min_day..subject.max_day).to_a.find(&:workday?)
           subject.valid?
         end
 
@@ -93,7 +91,6 @@ describe Order do
     context 'max_day < delivery_day' do
       before do
         subject.delivery_day = subject.max_day + 1
-        
         subject.valid?
       end
 

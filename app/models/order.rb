@@ -48,11 +48,11 @@ class Order < ActiveRecord::Base
 
   def fee_amount
     case cart.total_amount
-    when 100_000 .. Float::INFINITY
+    when 100_000..Float::INFINITY
       1_000
-    when 30_000 .. 100_000
+    when 30_000..100_000
       600
-    when 10_000 .. 30_000
+    when 10_000..30_000
       400
     else
       300
@@ -85,12 +85,15 @@ class Order < ActiveRecord::Base
     end
 
     def delivery_day_limit
-      if delivery_day.present?
-        unless delivery_day.between?(min_day, max_day) && delivery_day.workday?
-          errors.add(:delivery_day,
-            I18n.t('activerecord.errors.messages.invalid_business_day',
-              from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
-        end
+      unless delivery_day.between?(min_day, max_day) && delivery_day.workday?
+        errors.add(
+          :delivery_day,
+          I18n.t(
+            'activerecord.errors.messages.invalid_business_day',
+            from: BUSINESS_DAY_FROM,
+            to: BUSINESS_DAY_TO
+          )
+        )
       end
     end
 end
