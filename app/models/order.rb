@@ -80,26 +80,17 @@ class Order < ActiveRecord::Base
     end
 
     def initialize_business_days
-      @min_day = business_days_after(BUSINESS_DAY_FROM)
-      @max_day = business_days_after(BUSINESS_DAY_TO)
-    end
-
-    def business_days_after num
-      date = Date.current
-
-      while num > 1
-        date += 1
-        num -= 1 unless date.saturday? or date.sunday?
-      end
-
-      date
+      @min_day = BUSINESS_DAY_FROM.business_days.from_now.to_date
+      @max_day = BUSINESS_DAY_TO.business_days.from_now.to_date
     end
 
     def delivery_day_limit
-      if delivery_day.present? && delivery_day < min_day or max_day < delivery_day or delivery_day.saturday? or delivery_day.sunday?
-        errors.add(:delivery_day,
-          I18n.t('activerecord.errors.messages.invalid_business_day',
-            from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
+      if delivery_day.present?
+        unless delivery_day.between?(min_day, max_day) && delivery_day.workday?
+          errors.add(:delivery_day,
+            I18n.t('activerecord.errors.messages.invalid_business_day',
+              from: BUSINESS_DAY_FROM, to: BUSINESS_DAY_TO))
+        end
       end
     end
 end
