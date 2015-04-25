@@ -10,9 +10,9 @@ ja:
         zipcode: 郵便番号
         delivery_day: 配送日付
         delivery_time: 配送時間帯
-        postage: 送料
-        fee: 代引き手数料
-        tax: 消費税
+        postage_amount: 送料
+        fee_amount: 代引き手数料
+        tax_amount: 消費税
         total_amount: 合計
     errors:
       messages:
