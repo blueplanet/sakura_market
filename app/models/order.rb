@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
 
   enumerize :delivery_time, in: [:t8_12, :t12_14, :t14_16, :t16_18, :t18_20, :t20_21]
 
-  attr_reader :min_day, :max_day, :postage_amount, :fee_amount, :tax_amount
+  attr_reader :min_day, :max_day
   delegate :items, to: :cart, allow_nil: true
 
   validates :name, presence: true
