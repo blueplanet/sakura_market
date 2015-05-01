@@ -2,7 +2,7 @@
   .panel-heading
     => link_to journal.title, journal
     |by
-    =< journal.user.nick_name
+    =< journal.nick_name || journal.email
     =< l journal.updated_at
 
   .panel-body

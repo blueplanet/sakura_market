@@ -21,5 +21,7 @@ class Journal < ActiveRecord::Base
 
   default_scope { order(updated_at: :desc) }
 
+  delegate :nick_name, :email, to: :user
+
   mount_uploader :image, ImageUploader
 end
