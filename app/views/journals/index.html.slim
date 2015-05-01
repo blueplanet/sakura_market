@@ -1,8 +1,17 @@
-- if user_signed_in?
-  .btn-group
-    = link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary', id: 'new-journal'
+.row
+  .col-md-3
+    .panel.panel-info
+      .panel-heading
+        |新着Goood!
+      ul.list-group
+        == render @goods
+  .col-md-6
+    - if user_signed_in?
+      .btn-group
+        = link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary', id: 'new-journal'
 
-#journals
-  = render @journals
+    #journals
+      = render @journals
 
-  = paginate @journals
+      = paginate @journals
+  .col-md-3
