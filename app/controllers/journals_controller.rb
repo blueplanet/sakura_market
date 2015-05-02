@@ -5,6 +5,7 @@ class JournalsController < ApplicationController
   def index
     @journals = Journal.all.page params[:page]
     @goods = Good.order(created_at: :desc).limit(5)
+    @comments = Comment.order(created_at: :desc).limit(5)
   end
 
   def show

@@ -1,11 +1,15 @@
 .row
-  .col-md-3
+  .col-md-4
     .panel.panel-info
-      .panel-heading
-        |新着Goood!
+      .panel-heading 新着Goood!
       ul.list-group
         == render @goods
-  .col-md-6
+    .panel.panel-info
+      .panel-heading 新着コメント
+      ul.list-group
+        == render partial: 'comment', collection: @comments
+      
+  .col-md-8
     - if user_signed_in?
       .btn-group
         = link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary', id: 'new-journal'
@@ -14,4 +18,3 @@
       = render @journals
 
       = paginate @journals
-  .col-md-3
