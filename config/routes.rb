@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     resources :goods, only: :create
   end
 
+  resource :profile, only: :show
+
   root 'journals#index'
 end
