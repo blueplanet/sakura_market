@@ -14,7 +14,6 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime
 #  updated_at             :datetime
-#  nick_name              :string
 #
 
 class User < ActiveRecord::Base
@@ -24,8 +23,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  has_one :default_address
-  has_many :journals
-  has_many :goods
+  has_one :default_address, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  has_many :journals, dependent: :destroy
+  has_many :goods, dependent: :delete_all
   has_many :good_journals, through: :goods, source: :journal
 end

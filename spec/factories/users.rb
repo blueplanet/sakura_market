@@ -14,7 +14,6 @@
 #  unconfirmed_email      :string
 #  created_at             :datetime
 #  updated_at             :datetime
-#  nick_name              :string
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
