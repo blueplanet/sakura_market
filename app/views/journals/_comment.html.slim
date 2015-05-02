@@ -1,0 +1,6 @@
+li.list-group-item
+  = link_to comment.journal.title, comment.journal
+  =<> 'に'
+  = link_to comment.user.nick_name || comment.user.email
+  '
+  |がコメントしました！
