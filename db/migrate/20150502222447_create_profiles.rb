@@ -9,5 +9,7 @@ class CreateProfiles < ActiveRecord::Migration
     end
 
     remove_column :users, :nick_name
+
+    User.all.map(&:create_profile!)
   end
 end

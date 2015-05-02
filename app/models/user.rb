@@ -28,4 +28,6 @@ class User < ActiveRecord::Base
   has_many :journals, dependent: :destroy
   has_many :goods, dependent: :delete_all
   has_many :good_journals, through: :goods, source: :journal
+
+  before_create { build_profile }
 end
