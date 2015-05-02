@@ -13,8 +13,8 @@
 
 class Journal < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
-  has_many :goods
+  has_many :comments, dependent: :destroy
+  has_many :goods, dependent: :destroy
 
   validates :title, presence: true, length: { in: 4..50 }
   validates :body, presence: true, length: { in: 4..1000 }
