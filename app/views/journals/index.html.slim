@@ -1,7 +1,12 @@
 .row
   .col-md-4
     - if current_user.profile.avatar?
-      .text-center = image_tag current_user.profile.avatar_url, class: 'user-avatar'
+      .panel.panel-default
+        .panel-body
+          .text-center = image_tag current_user.profile.avatar_url, class: 'user-avatar'
+          ul.list-group
+            = link_to 'プロファイルを編集する', [:edit, :profile], class: 'list-group-item'
+            = link_to 'ログイン情報を編集する', [:edit, :user_registration], class: 'list-group-item'
     .panel.panel-info
       .panel-heading 新着Good!
       ul.list-group
