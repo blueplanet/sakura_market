@@ -1,7 +1,8 @@
 li.media
-  .media-left
-    = link_to '#' do
-      = image_tag comment.user.profile.avatar_url, class: 'media-object img-circle'
+  - if comment.user.avatar?
+    .media-left
+      = link_to '#' do
+        = image_tag comment.user.avatar_url, class: 'media-object img-circle'
   .media-body
     h4.media-heading
       => comment.user.nick_name
