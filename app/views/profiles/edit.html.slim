@@ -1,0 +1,15 @@
+.row
+  .page-header
+    h2 プロファイル編集
+.row
+  = simple_form_for @profile, url: '/profile', html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
+    = f.input :nick_name
+    - if @profile.avatar?
+      .form-group
+        .col-md-9.col-md-offset-3
+          = image_tag @profile.avatar_url(:thumb)
+    = f.input :avatar
+      
+    .col-md-offset-3
+      = f.submit class: 'btn btn-success btn-lg'
+    
