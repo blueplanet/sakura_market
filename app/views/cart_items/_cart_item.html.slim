@@ -8,9 +8,9 @@ tr
         span.input-group-btn
           = button_tag type: :submit, class: 'btn btn-info' do
             span.glyphicon.glyphicon-refresh
-            = t 'strings.update'
+            =< t 'strings.update'
           = link_to cart_item, class: 'btn btn-danger', method: :delete, data: {confirm: t('confirmations.delete')} do
             span.glyphicon.glyphicon-trash
-            = t 'strings.delete'
+            =< t 'strings.delete'
   td.text-right = number_with_delimiter(cart_item.price)
   td.text-right = number_with_delimiter(cart_item.price * cart_item.quantity)
