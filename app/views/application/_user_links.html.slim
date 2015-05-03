@@ -9,6 +9,8 @@ ul.nav.navbar-nav.navbar-right
           span.glyphicon.glyphicon-shopping-cart
           = "#{current_cart.items.count} - $ #{number_with_delimiter(current_cart.total_amount)}" 
     li
+      = link_to 'プロファイル', [:edit, :profile]
+    li
       = link_to t('links.logout'), destroy_user_session_path, method: :delete
   - else
     li

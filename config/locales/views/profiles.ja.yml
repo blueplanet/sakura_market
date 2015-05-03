@@ -1,0 +1,5 @@
+ja:
+  profiles:
+    update:
+      success: プロファイルを更新しました。
+      failed: プロファイルを更新できませんでした。

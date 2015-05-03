@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      profile: プロファイル
+    attributes:
+      profile:
+        nick_name: ニックネーム
+        avatar: 画像

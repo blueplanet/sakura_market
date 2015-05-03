@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'ユーザは、自分のカートを管理したい' do
   background do

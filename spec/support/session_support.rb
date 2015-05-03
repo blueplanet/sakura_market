@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 def login(user = FactoryGirl.create(:user) )
   visit new_user_session_path

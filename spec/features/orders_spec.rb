@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'ユーザは、注文情報を管理したい' do
   background { login }

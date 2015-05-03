@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'ゲストは、日記の一覧を確認したい' do
   background do

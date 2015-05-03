@@ -2,8 +2,8 @@
   .panel-heading
     => link_to journal.title, journal
     |by
-    =< journal.nick_name || journal.email
-    =< l journal.updated_at
+    =< link_to journal.nick_name, journal.user.profile
+    =< l journal.updated_at, format: :short
 
   .panel-body
     = image_tag journal.image_url, class: 'journal-image img-rounded' if journal.image?
