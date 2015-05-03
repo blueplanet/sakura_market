@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ProfilesController, type: :controller do
-
   describe "GET #show" do
     let(:profile) { create :profile }
     it "returns http success" do
