@@ -30,4 +30,6 @@ class User < ActiveRecord::Base
   has_many :good_journals, through: :goods, source: :journal
 
   before_create { build_profile }
+
+  delegate :nick_name, to: :profile
 end
