@@ -4,10 +4,17 @@
 = image_tag @journal.image_url, class: 'journal-image' if @journal.image?
 = simple_format @journal.body
 
-.btn-group
-  = link_to t('.edit'), edit_journal_path(@journal), class: 'btn btn-success' if @journal.user == current_user
-  - if current_user == @journal.user
-    = link_to t('links.delete'), journal_path(@journal), class: 'btn btn-danger', method: :delete, data: { confirm: t('confirmations.delete') }
+- if @journal.user == current_user
+  hr
+  ul.list-inline
+    li
+      = link_to edit_journal_path(@journal), class: 'btn btn-success' do
+        span.glyphicon.glyphicon-edit
+        =< t('.edit')
+    li
+      = link_to journal_path(@journal), class: 'btn btn-danger', method: :delete, data: { confirm: t('confirmations.delete') } do
+        span.glyphicon.glyphicon-trash
+        =< t('links.delete')
 
 hr
 
@@ -19,4 +26,5 @@ hr
 
   ul.media-list
     = render @comments
+
   = paginate @comments
