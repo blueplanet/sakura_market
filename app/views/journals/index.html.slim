@@ -19,7 +19,9 @@
   .col-md-8
     - if user_signed_in?
       .btn-group
-        = link_to t('.new_journal'), new_journal_path, class: 'btn btn-primary', id: 'new-journal'
+        = link_to new_journal_path, class: 'btn btn-primary', id: 'new-journal' do
+          span.glyphicon.glyphicon-edit
+          =< t('.new_journal')
 
     #journals
       = render @journals

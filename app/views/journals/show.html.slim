@@ -1,8 +1,10 @@
 .page-header
   h1 = @journal.title
 
-= image_tag @journal.image_url, class: 'journal-image' if @journal.image?
-= simple_format @journal.body
+.row
+  .col-md-12
+    = image_tag @journal.image_url, class: 'journal-image pull-left' if @journal.image?
+    = simple_format @journal.body
 
 - if @journal.user == current_user
   hr

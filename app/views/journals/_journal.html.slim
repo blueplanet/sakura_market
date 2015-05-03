@@ -6,16 +6,21 @@
     =< l journal.updated_at, format: :short
 
   .panel-body
-    = image_tag journal.image_url, class: 'journal-image img-rounded' if journal.image?
-    = simple_format journal.body
+    .row
+      .col-md-12
+        = image_tag journal.image_url, class: 'journal-image img-rounded pull-left' if journal.image?
+        = simple_format journal.body
 
     - if current_user and current_user != journal.user
-      ul.list-inline
-        li= good_button journal
-        li
-          = link_to '#', class: 'btn btn-primary', "data-toggle" => "modal", "data-target" => "#commentModal#{journal.id}" do
-            span.glyphicon.glyphicon-comment
-            =< t('.new_comment')
+      .row
+        .col-md-12
+          hr
+          ul.list-inline
+            li= good_button journal
+            li
+              = link_to '#', class: 'btn btn-primary', "data-toggle" => "modal", "data-target" => "#commentModal#{journal.id}" do
+                span.glyphicon.glyphicon-comment
+                =< t('.new_comment')
 
 .modal.fade id="commentModal#{journal.id}" role="dialog" aria-hidden="true"
   .modal-dialog
