@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'ゲストは、商品の情報を確認したい' do
   let!(:products) { FactoryGirl.create_list :product, 5 }

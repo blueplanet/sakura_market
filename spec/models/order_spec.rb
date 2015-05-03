@@ -14,7 +14,7 @@
 #  user_id       :integer
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Order do
   it { should respond_to :min_day }

@@ -12,7 +12,7 @@
 #  updated_at :datetime
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe DefaultAddress do
   describe '#copy_to' do
