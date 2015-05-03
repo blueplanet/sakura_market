@@ -13,4 +13,8 @@ module ApplicationHelper
       content_tag :span, '', class: 'glyphicon glyphicon-user profile-avatar'
     end
   end
+
+  def active_for(path)
+    'active' if current_page?(path)
+  end
 end
