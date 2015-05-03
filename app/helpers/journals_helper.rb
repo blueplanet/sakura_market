@@ -1,8 +1,7 @@
 module JournalsHelper
   def good_button(journal)
-    class_name = 'good btn'
-    class_name += current_user.good_journals.include?(journal) ?
-      ' btn-default disabled' : ' btn-success'
+    class_name = 'good btn btn-success'
+    class_name += ' disabled' if current_user.good_journals.include?(journal)
 
     link_to journal_goods_path(journal),
       method: :post,
