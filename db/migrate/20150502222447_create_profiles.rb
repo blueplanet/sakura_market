@@ -10,6 +10,6 @@ class CreateProfiles < ActiveRecord::Migration
 
     remove_column :users, :nick_name
 
-    User.all.map(&:create_profile!)
+    User.all.map { |u| u.create_profile! nick_name: u.email }
   end
 end
