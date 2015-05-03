@@ -31,5 +31,5 @@ class User < ActiveRecord::Base
 
   before_create { build_profile nick_name: email }
 
-  delegate :nick_name, to: :profile
+  delegate :nick_name, :avatar, :avatar?, :avatar_url, to: :profile
 end

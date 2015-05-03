@@ -1,6 +1,6 @@
 .row
   .col-md-4
-    - if current_user.profile.avatar?
+    - if current_user.try(:avatar?)
       .panel.panel-default
         .panel-body
           .text-center = image_tag current_user.profile.avatar_url, class: 'user-avatar'

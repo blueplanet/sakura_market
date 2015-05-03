@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :profile do
-    user
     sequence(:nick_name) { |n| "nick_name #{n}" }
 
     trait :with_avatar do
