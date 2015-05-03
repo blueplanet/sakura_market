@@ -6,7 +6,7 @@
     =< l journal.updated_at, format: :short
 
   .panel-body
-    = image_tag journal.image_url, class: 'journal-image img-rounded mb20' if journal.image?
+    = image_tag journal.image_url, class: 'journal-image img-rounded' if journal.image?
     = simple_format journal.body
 
     - if current_user and current_user != journal.user
