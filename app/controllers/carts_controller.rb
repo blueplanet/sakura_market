@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   def show
-    @cart = Cart.find params[:id]
+    @cart = current_cart
     @items = @cart.items.page params[:page]
   end
 end

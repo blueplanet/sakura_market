@@ -3,8 +3,8 @@ ul.nav.navbar-nav.navbar-right
     li.navbar-text= current_user.email
     li class= active_for(orders_path)
       = link_to t('links.orders'), orders_path
-    li class= active_for(cart_path(current_cart))
-      = link_to current_cart do
+    li class= active_for(cart_path)
+      = link_to cart_path do
         .text-danger
           span.glyphicon.glyphicon-shopping-cart
           =< "#{current_cart.items.count} 件"
