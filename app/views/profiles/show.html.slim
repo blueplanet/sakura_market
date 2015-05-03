@@ -1,2 +1,13 @@
-h1 Profiles#show
-p Find me in app/views/profiles/show.html.slim
+.row
+  .page-header
+    h2 プロファイル
+.row
+  .col-md-3.text-center
+    = avatar_image @profile
+  .col-md-9
+    .panel.panel-info
+      .panel-heading 最近の日記
+      ul.list-group
+        == render partial: 'journal', collection: @profile.user.journals.order(created_at: :desc).limit(5)
+        - if @profile.user.journals.blank?
+          li.list-group-item 日記をまだ書いていません
