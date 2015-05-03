@@ -1,14 +1,14 @@
 ul.nav.navbar-nav.navbar-right
   - if user_signed_in?
-    .navbar-text= current_user.email
-    li
+    li.navbar-text= current_user.email
+    li class= active_for(orders_path)
       = link_to t('links.orders'), orders_path
-    li
-      = link_to current_cart, class: "btn btn-#{current_page?(cart_path(current_cart)) ? 'info' : 'default'}" do
+    li class= active_for(cart_path(current_cart))
+      = link_to current_cart do
         .text-danger
           span.glyphicon.glyphicon-shopping-cart
-          = "#{current_cart.items.count} - $ #{number_with_delimiter(current_cart.total_amount)}" 
-    li
+          =< "#{current_cart.items.count} 件"
+    li class= active_for(edit_profile_path)
       = link_to 'プロファイル', [:edit, :profile]
     li
       = link_to t('links.logout'), destroy_user_session_path, method: :delete
