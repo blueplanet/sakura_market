@@ -1,5 +1,7 @@
 .row
   .col-md-4
+    - if current_user.profile.avatar?
+      .text-center = image_tag current_user.profile.avatar_url, class: 'user-avatar'
     .panel.panel-info
       .panel-heading 新着Good!
       ul.list-group
