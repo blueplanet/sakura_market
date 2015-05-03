@@ -21,7 +21,7 @@
 hr
 
 #comments
-  - unless @journal.user == current_user
+  - if user_signed_in? && @journal.user != current_user
     = simple_form_for [@journal, Comment.new] do |f|
       = f.input :content, input_html: { rows: 3 }
       = f.submit t('.add_comment'), class: 'btn btn-primary'
