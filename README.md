@@ -9,3 +9,13 @@
 - Ruby 2.2.2
 - Rails 4.2.1
 - Postgresql 9.3
+
+## Online demo
+
+http://sakura-market.herokuapp.com
+
+- 普通ユーザ：ユーザ登録から利用できる
+  - `send_grid`を使う為、登録のメール送信が若干遅くかもしれません
+- 管理画面
+  - URL: http://sakura-market.herokuapp.com/admin
+  - admin@example.com / password12345
