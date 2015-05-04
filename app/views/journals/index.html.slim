@@ -1,11 +1,12 @@
 .row
   .col-md-4
-    - if current_user.try(:avatar?)
+    - if user_signed_in?
       .panel.panel-default
         .panel-body
-          .text-center = image_tag current_user.avatar_url(:thumb), class: 'profile-avatar'
+          .text-center = avatar_image current_user.profile
           ul.list-group
             = link_to 'プロファイルを編集する', [:edit, :profile], class: 'list-group-item'
+            = link_to 'デフォルト送信先を編集する', [:edit, :default_address], class: 'list-group-item'
             = link_to 'ログイン情報を編集する', [:edit, :user_registration], class: 'list-group-item'
     .panel.panel-info
       .panel-heading 新着Good!

@@ -25,11 +25,15 @@ class User < ActiveRecord::Base
 
   has_one :default_address, dependent: :destroy
   has_one :profile, dependent: :destroy
+  has_many :orders
   has_many :journals, dependent: :destroy
   has_many :goods, dependent: :delete_all
   has_many :good_journals, through: :goods, source: :journal
 
-  before_create { build_profile nick_name: email }
+  before_create do
+    build_profile nick_name: email
+    build_default_address
+  end
 
   delegate :nick_name, :avatar, :avatar?, :avatar_url, to: :profile
 end

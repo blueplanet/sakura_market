@@ -1,0 +1,5 @@
+ja:
+  default_addresses:
+    update:
+      success: デフォルト送信先を更新しました。
+      failed: デフォルト送信先を更新できませんでした。

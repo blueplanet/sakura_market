@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @orders = Order.order(created_at: :desc).page(params[:page]).per(5)
+    @orders = current_user.orders.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new
@@ -26,7 +28,7 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:name, :tel, :zipcode, :address, 
+      params.require(:order).permit(:name, :tel, :zipcode, :address,
         :delivery_day, :delivery_time, :postage, :fee, :tax, :total)
     end
 end

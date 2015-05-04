@@ -27,10 +27,10 @@ class Order < ActiveRecord::Base
   attr_reader :min_day, :max_day
   delegate :items, to: :cart, allow_nil: true
 
-  validates :name, presence: true
-  validates :tel, presence: true
-  validates :zipcode, presence: true
-  validates :address, presence: true
+  validates :name, presence: true, length: { minimum: 4, maximum: 20 }
+  validates :tel, presence: true, length: { minimum: 10, maximum: 13 }
+  validates :zipcode, presence: true, length: { minimum: 7, maximum: 8 }
+  validates :address, presence: true, length: { minimum: 10, maximum: 100 }
   validates :delivery_day, presence: true
   validate :delivery_day_limit, unless: 'delivery_day.blank?'
   validates :delivery_time, presence: true
@@ -39,7 +39,7 @@ class Order < ActiveRecord::Base
   has_one :cart
 
   after_create :set_order_info_to_cart
-  after_create :set_default_address, if: -> { user.default_address.blank? }
+  after_create :set_default_address, if: -> { user.default_address.name.blank? }
   after_initialize :initialize_business_days
 
   def postage_amount
@@ -73,10 +73,7 @@ class Order < ActiveRecord::Base
     end
 
     def set_default_address
-      default = DefaultAddress.new user: user
-      default.copy_from self
-
-      default.save!
+      user.default_address.copy_from! self
     end
 
     def initialize_business_days

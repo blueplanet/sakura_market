@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 feature 'ユーザは、注文情報を管理したい' do
-  background { login }
+  let(:user) { create :user }
+  background { login user }
 
   feature 'ユーザは、カートにある商品を注文したい' do
     background do
@@ -44,7 +45,7 @@ feature 'ユーザは、注文情報を管理したい' do
   end
 
   feature 'ユーザは、注文一覧を確認したい' do
-    let!(:orders) { FactoryGirl.create_list :order, 5 }
+    let!(:orders) { FactoryGirl.create_list :order, 5, user: user }
 
     scenario 'ユーザは注文一覧を確認できる' do
       visit orders_path

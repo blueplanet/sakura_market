@@ -1,0 +1,12 @@
+.row
+  .page-header
+    h2 デフォルト送信先
+
+.row
+  = simple_form_for @default_address, html: {class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
+    = f.input :name
+    = f.input :tel
+    = f.input :zipcode
+    = f.input :address
+    .col-md-9.col-md-offset-3
+      = f.submit class: 'btn btn-primary'
