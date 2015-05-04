@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DefaultAddressesController, type: :controller do
+  before { sign_in :user, create(:user) }
 
   describe "GET #edit" do
     it "returns http success" do
@@ -8,5 +9,4 @@ RSpec.describe DefaultAddressesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

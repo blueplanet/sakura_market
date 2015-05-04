@@ -1,4 +1,5 @@
 class DefaultAddressesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_default_address, only: [:edit, :update]
 
   def update
