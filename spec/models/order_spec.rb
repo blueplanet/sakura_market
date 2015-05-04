@@ -134,7 +134,7 @@ describe Order do
       it 'デフォルトアドレスが新規される' do
         expect {
           order.save!
-        }.to change(DefaultAddress, :count).by(1)
+        }.to change(order.user.default_address, :updated_at)
       end
     end
 
@@ -144,7 +144,7 @@ describe Order do
       it 'デフォルトアドレスが変更されない' do
         expect {
           order.save!
-        }.not_to change(DefaultAddress, :count)
+        }.not_to change(order.user.default_address, :updated_at)
       end
     end
   end
