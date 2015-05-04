@@ -24,10 +24,12 @@ class DefaultAddress < ActiveRecord::Base
     validates :address, presence: true, length: { minimum: 10, maximum: 100 }
   end
 
-  def copy_from from
+  def copy_from! from
     ATTRS.each do |attr|
       self[attr] = from[attr]
     end
+
+    save!
   end
 
   def copy_to to
