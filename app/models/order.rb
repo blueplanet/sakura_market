@@ -73,10 +73,8 @@ class Order < ActiveRecord::Base
     end
 
     def set_default_address
-      default = DefaultAddress.new user: user
-      default.copy_from self
-
-      default.save!
+      user.default_address.copy_from self
+      user.default_address.save!
     end
 
     def initialize_business_days
