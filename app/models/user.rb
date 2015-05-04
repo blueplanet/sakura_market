@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
   has_one :default_address, dependent: :destroy
   has_one :profile, dependent: :destroy
+  has_many :orders
   has_many :journals, dependent: :destroy
   has_many :goods, dependent: :delete_all
   has_many :good_journals, through: :goods, source: :journal
