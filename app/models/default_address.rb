@@ -24,7 +24,7 @@ class DefaultAddress < ActiveRecord::Base
     validates :address, presence: true, length: { minimum: 10, maximum: 100 }
   end
 
-  def copy_from! from
+  def copy_from!(from)
     ATTRS.each do |attr|
       self[attr] = from[attr]
     end
@@ -32,7 +32,7 @@ class DefaultAddress < ActiveRecord::Base
     save!
   end
 
-  def copy_to to
+  def copy_to(to)
     ATTRS.each do |attr|
       to[attr] = self[attr]
     end
