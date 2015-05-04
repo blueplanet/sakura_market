@@ -10,6 +10,8 @@ ul.nav.navbar-nav.navbar-right
           =< "#{current_cart.items.count} 件"
     li class= active_for(edit_profile_path)
       = link_to 'プロファイル', [:edit, :profile]
+    li class= active_for(edit_default_address_path)
+      = link_to 'デフォルト送信先', [:edit, :default_address]
     li
       = link_to t('links.logout'), destroy_user_session_path, method: :delete
   - else

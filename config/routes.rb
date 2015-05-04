@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :profiles, only: :show
   resource :profile, only: [:edit, :update]
+  resource :default_address, only: [:edit, :update]
 
   root 'journals#index'
 end

@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      default_address: デフォルト送信先
+    attributes:
+      default_address:
+        name: お名前
+        tel: 電話番号
+        address: 住所
+        zipcode: 郵便番号
