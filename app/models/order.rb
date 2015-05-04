@@ -27,10 +27,10 @@ class Order < ActiveRecord::Base
   attr_reader :min_day, :max_day
   delegate :items, to: :cart, allow_nil: true
 
-  validates :name, presence: true, length: {minimum: 4, maximum: 20}
-  validates :tel, presence: true, length: {minimum: 10, maximum: 13}
-  validates :zipcode, presence: true, length: {minimum: 7, maximum: 8}
-  validates :address, presence: true, length: {minimum: 10, maximum: 100}
+  validates :name, presence: true, length: { minimum: 4, maximum: 20 }
+  validates :tel, presence: true, length: { minimum: 10, maximum: 13 }
+  validates :zipcode, presence: true, length: { minimum: 7, maximum: 8 }
+  validates :address, presence: true, length: { minimum: 10, maximum: 100 }
   validates :delivery_day, presence: true
   validate :delivery_day_limit, unless: 'delivery_day.blank?'
   validates :delivery_time, presence: true
