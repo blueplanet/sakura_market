@@ -1,6 +1,6 @@
 $ ->
   $('a.good').on 'ajax:success', ->
-    $(@).removeClass('btn-success').addClass('btn-default disabled')
+    $(@).addClass('disabled')
 
   $('input.journal-image-field').on 'change', ->
     $preview = $(@).closest('form').find('.journal-image')
