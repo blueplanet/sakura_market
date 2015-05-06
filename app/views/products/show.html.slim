@@ -7,5 +7,5 @@
       dt = t 'activerecord.attributes.product.price'
       dd = number_with_delimiter @product.price
       dt = t 'activerecord.attributes.product.description'
-      dd = @product.description
+      dd = simple_format @product.description
     = link_to t('.add_to_cart'), cart_items_path(product_id: @product.id), method: :post, class: 'btn btn-danger'
