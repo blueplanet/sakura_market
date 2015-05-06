@@ -1,10 +1,11 @@
 li.media
-  - if comment.user.avatar?
-    .media-left
-      = link_to '#' do
-        = image_tag comment.user.avatar_url, class: 'media-object img-circle'
+  .media-left
+    - if comment.user.avatar?
+      = image_tag comment.user.avatar_url, class: 'media-object img-circle'
+    - else
+      = content_tag :span, '', class: 'glyphicon glyphicon-user profile-avatar small'
   .media-body
     h4.media-heading
-      => comment.user.nick_name
+      => link_to comment.user.nick_name, comment.user.profile
       span.small = l comment.created_at
     = simple_format comment.content

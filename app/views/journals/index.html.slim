@@ -25,6 +25,10 @@
           =< t('.new_journal')
 
     #journals
+      .text-right
+        = paginate @journals
+        
       = render @journals
-
-      = paginate @journals
+      
+      .text-right
+        = paginate @journals
